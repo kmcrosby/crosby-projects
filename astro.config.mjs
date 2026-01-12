@@ -6,6 +6,11 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://kmcrosby.github.io',
   base: '/crosby-projects',
-  integrations: [mdx(), sitemap()],
+  integrations: [
+    mdx(), 
+    sitemap({
+      filter: (page) => !page.includes('/admin/')
+    })
+  ],
   output: 'static',
 });

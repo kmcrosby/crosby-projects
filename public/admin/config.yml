@@ -37,7 +37,8 @@ collections:
       - { label: "Summary", name: "summary", widget: "text" }
       - { label: "Featured Image", name: "image", widget: "image", required: false }
       - { label: "Content", name: "body", widget: "markdown" }
-      - { label: "External Link", name: "externalLink", widget: "string", required: false }
+      - { label: "External Link", name: "externalLink", widget: "string", required: false, hint: "Link to external article" }
+      - { label: "Media Outlet", name: "mediaOutlet", widget: "string", required: false }
       - { label: "Tags", name: "tags", widget: "list", required: false }
 
   # Projects/Experiments
@@ -50,8 +51,76 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Status", name: "status", widget: "select", options: ["Active", "Completed", "Planned"] }
       - { label: "Start Date", name: "startDate", widget: "datetime" }
-      - { label: "Description", name: "description", widget: "text" }
+      - { label: "End Date", name: "endDate", widget: "datetime", required: false }
+      - { label: "Short Description", name: "description", widget: "text" }
       - { label: "Full Description", name: "body", widget: "markdown" }
       - { label: "Featured Image", name: "image", widget: "image", required: false }
+      - { label: "Gallery Images", name: "gallery", widget: "list", field: { label: "Image", name: "image", widget: "image" }, required: false }
       - { label: "Team Members", name: "team", widget: "list", required: false }
+      - { label: "Funding Source", name: "fundingSource", widget: "string", required: false }
       - { label: "Tags", name: "tags", widget: "list", required: false }
+
+  # Publications
+  - name: "publications"
+    label: "Publications"
+    folder: "src/content/publications"
+    create: true
+    slug: "{{year}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Authors", name: "authors", widget: "list" }
+      - { label: "Publication Date", name: "date", widget: "datetime" }
+      - { label: "Type", name: "type", widget: "select", options: ["Journal Article", "Conference Paper", "Technical Report", "Thesis", "Poster", "Other"] }
+      - { label: "Venue/Journal", name: "venue", widget: "string", required: false, hint: "Journal name or conference" }
+      - { label: "DOI", name: "doi", widget: "string", required: false }
+      - { label: "PDF", name: "pdf", widget: "file", required: false }
+      - { label: "Abstract", name: "abstract", widget: "text", required: false }
+      - { label: "Full Content", name: "body", widget: "markdown", required: false }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+
+  # Resources
+  - name: "resources"
+    label: "Resources"
+    folder: "src/content/resources"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Category", name: "category", widget: "select", options: ["Learning Materials", "Lab Equipment", "Software Tools", "External Links", "Documents", "Other"] }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Link", name: "link", widget: "string", required: false, hint: "External URL" }
+      - { label: "File", name: "file", widget: "file", required: false, hint: "Upload a document" }
+      - { label: "Full Content", name: "body", widget: "markdown", required: false }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+
+  # Media Coverage
+  - name: "media"
+    label: "Media Coverage"
+    folder: "src/content/media"
+    create: true
+    slug: "{{year}}-{{month}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Outlet", name: "outlet", widget: "string", hint: "e.g., NPR, Local News, Podcast" }
+      - { label: "Type", name: "type", widget: "select", options: ["TV", "Radio", "Print", "Online", "Podcast", "Other"] }
+      - { label: "Summary", name: "summary", widget: "text" }
+      - { label: "Link", name: "link", widget: "string", required: false }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Full Content", name: "body", widget: "markdown", required: false }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+
+  # Partners & Sponsors
+  - name: "partners"
+    label: "Partners & Sponsors"
+    folder: "src/content/partners"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Logo", name: "logo", widget: "image", required: false }
+      - { label: "Website", name: "website", widget: "string", required: false }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Partner Type", name: "partnerType", widget: "select", options: ["Industry Partner", "Government Agency", "Academic Institution", "Sponsor", "Collaborator"] }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false, hint: "Show prominently on homepage" }
+      - { label: "Full Content", name: "body", widget: "markdown", required: false }

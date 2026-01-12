@@ -2,58 +2,57 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
-const media = await getCollection('media');
-const sortedMedia = media.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const news = await getCollection('news');
+const sortedNews = news.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
-<BaseLayout title="Media Coverage - Carthage Space Sciences">
+<BaseLayout title="News - Carthage Space Sciences">
   <section class="page-hero">
     <div class="container">
-      <h1>Media Coverage</h1>
+      <h1>News & Updates</h1>
     </div>
   </section>
   <section class="section">
     <div class="container">
       <p class="lead text-center">
-        News coverage, interviews, and features about our space sciences program.
+        The latest news, announcements, and updates from the Carthage Space Sciences program.
       </p>
       
-      {sortedMedia.length === 0 ? (
+      {sortedNews.length === 0 ? (
         <div class="placeholder-message">
-          <h2>Media Coverage Coming Soon</h2>
+          <h2>News Coming Soon</h2>
           <p>
-            Media appearances will be added through the CMS admin interface.
+            News and updates will be added through the CMS admin interface.
           </p>
-          <a href="/crosby-projects/admin/" class="btn">Add Media via CMS</a>
+          <a href="/crosby-projects/admin/" class="btn">Add News via CMS</a>
         </div>
       ) : (
-        <div class="media-grid">
-          {sortedMedia.map((item) => (
-            <article class="media-card">
+        <div class="news-grid">
+          {sortedNews.map((item) => (
+            <article class="news-card">
               {item.data.image && (
-                <div class="media-image">
+                <div class="news-image">
                   <img src={item.data.image} alt={item.data.title} />
                 </div>
               )}
-              <div class="media-content">
-                <div class="media-meta">
-                  <span class="media-type">{item.data.type}</span>
-                  <span class="media-outlet">{item.data.outlet}</span>
-                </div>
+              <div class="news-content">
                 <time datetime={item.data.date.toISOString()}>
                   {item.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                 </time>
+                {item.data.mediaOutlet && (
+                  <span class="news-outlet">{item.data.mediaOutlet}</span>
+                )}
                 <h2>{item.data.title}</h2>
                 <p>{item.data.summary}</p>
                 {item.data.tags && item.data.tags.length > 0 && (
-                  <div class="media-tags">
+                  <div class="news-tags">
                     {item.data.tags.map((tag: string) => (
                       <span class="tag">{tag}</span>
                     ))}
                   </div>
                 )}
-                {item.data.link && (
-                  <a href={item.data.link} target="_blank" rel="noopener noreferrer" class="media-link">
-                    View Coverage →
+                {item.data.externalLink && (
+                  <a href={item.data.externalLink} target="_blank" rel="noopener noreferrer" class="news-link">
+                    Read More →
                   </a>
                 )}
               </div>
@@ -86,12 +85,12 @@ const sortedMedia = media.sort((a, b) => b.data.date.getTime() - a.data.date.get
       color: var(--carthage-red);
       margin-bottom: var(--spacing-md);
     }
-    .media-grid {
+    .news-grid {
       display: grid;
       gap: var(--spacing-xl);
       margin-top: var(--spacing-xl);
     }
-    .media-card {
+    .news-card {
       display: grid;
       grid-template-columns: 1fr;
       background: var(--carthage-white);
@@ -100,68 +99,54 @@ const sortedMedia = media.sort((a, b) => b.data.date.getTime() - a.data.date.get
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
     @media (min-width: 768px) {
-      .media-card {
-        grid-template-columns: 200px 1fr;
+      .news-card {
+        grid-template-columns: 250px 1fr;
       }
     }
-    .media-image {
-      height: 150px;
+    .news-image {
+      height: 200px;
       overflow: hidden;
       background-color: var(--carthage-gray-light);
     }
     @media (min-width: 768px) {
-      .media-image {
+      .news-image {
         height: 100%;
-        min-height: 180px;
       }
     }
-    .media-image img {
+    .news-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
-    .media-content {
+    .news-content {
       padding: var(--spacing-lg);
     }
-    .media-meta {
-      display: flex;
-      gap: var(--spacing-sm);
-      margin-bottom: var(--spacing-xs);
-    }
-    .media-type {
-      font-size: 0.75rem;
-      padding: 2px 8px;
-      background-color: var(--carthage-blue);
-      color: var(--carthage-white);
-      border-radius: 4px;
-      text-transform: uppercase;
-    }
-    .media-outlet {
+    .news-content time {
       font-size: 0.85rem;
       color: var(--carthage-gray);
-      font-weight: 500;
     }
-    .media-content time {
-      font-size: 0.8rem;
-      color: var(--carthage-gray);
-      display: block;
-      margin-bottom: var(--spacing-xs);
+    .news-outlet {
+      font-size: 0.85rem;
+      color: var(--carthage-blue);
+      margin-left: var(--spacing-sm);
+      padding-left: var(--spacing-sm);
+      border-left: 1px solid var(--carthage-gray-light);
     }
-    .media-content h2 {
+    .news-content h2 {
       color: var(--carthage-red);
-      margin: var(--spacing-xs) 0 var(--spacing-sm) 0;
-      font-size: 1.2rem;
+      margin: var(--spacing-sm) 0;
+      font-size: 1.3rem;
     }
-    .media-content p {
+    .news-content p {
       color: var(--carthage-gray-dark);
       line-height: 1.6;
-      font-size: 0.95rem;
+      margin-bottom: var(--spacing-md);
     }
-    .media-tags {
+    .news-tags {
       display: flex;
       flex-wrap: wrap;
       gap: var(--spacing-xs);
-      margin: var(--spacing-sm) 0;
+      margin-bottom: var(--spacing-md);
     }
     .tag {
       font-size: 0.75rem;
@@ -170,14 +155,12 @@ const sortedMedia = media.sort((a, b) => b.data.date.getTime() - a.data.date.get
       border-radius: 4px;
       color: var(--carthage-gray-dark);
     }
-    .media-link {
-      display: inline-block;
-      margin-top: var(--spacing-sm);
+    .news-link {
       color: var(--carthage-blue);
       text-decoration: none;
       font-weight: 500;
     }
-    .media-link:hover {
+    .news-link:hover {
       text-decoration: underline;
     }
   </style>

@@ -1,42 +1,161 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
----
+import { getCollection } from 'astro:content';
 
+const projects = await getCollection('projects');
+const publications = await getCollection('publications');
+
+const sortedProjects = projects.sort((a, b) => b.data.startDate.getTime() - a.data.startDate.getTime());
+const sortedPublications = publications.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const activeProjects = sortedProjects.filter(p => p.data.status === 'Active');
+const completedProjects = sortedProjects.filter(p => p.data.status === 'Completed');
+const plannedProjects = sortedProjects.filter(p => p.data.status === 'Planned');
+---
 <BaseLayout title="Research - Carthage Space Sciences">
   <section class="page-hero">
     <div class="container">
       <h1>Research</h1>
     </div>
   </section>
-
   <section class="section">
     <div class="container">
       <p class="lead text-center">
         Explore our projects, experiments, and publications advancing space technology.
       </p>
 
-      <div class="research-categories">
-        <div class="category-card">
-          <h2>Projects & Experiments</h2>
-          <p>Hands-on research in microgravity phenomena, propellant management, and space technology.</p>
+      <!-- Projects Section -->
+      <div class="research-section">
+        <h2 class="section-title">Projects & Experiments</h2>
+        
+        {projects.length === 0 ? (
           <div class="placeholder-note">
             <p>Projects will appear here once added through the CMS.</p>
             <a href="/crosby-projects/admin/" class="btn">Add Projects via CMS</a>
           </div>
-        </div>
+        ) : (
+          <div class="projects-container">
+            {activeProjects.length > 0 && (
+              <div class="project-group">
+                <h3>Active Projects</h3>
+                <div class="projects-grid">
+                  {activeProjects.map((project) => (
+                    <div class="project-card">
+                      {project.data.image && (
+                        <div class="project-image">
+                          <img src={project.data.image} alt={project.data.title} />
+                        </div>
+                      )}
+                      <div class="project-content">
+                        <span class="status-badge active">Active</span>
+                        <h4>{project.data.title}</h4>
+                        <p>{project.data.description}</p>
+                        {project.data.team && project.data.team.length > 0 && (
+                          <div class="project-team">
+                            <strong>Team:</strong> {project.data.team.join(', ')}
+                          </div>
+                        )}
+                        {project.data.fundingSource && (
+                          <div class="project-funding">
+                            <strong>Funding:</strong> {project.data.fundingSource}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
-        <div class="category-card">
-          <h2>Publications</h2>
-          <p>Research papers, conference presentations, and technical reports from our team.</p>
+            {completedProjects.length > 0 && (
+              <div class="project-group">
+                <h3>Completed Projects</h3>
+                <div class="projects-grid">
+                  {completedProjects.map((project) => (
+                    <div class="project-card">
+                      {project.data.image && (
+                        <div class="project-image">
+                          <img src={project.data.image} alt={project.data.title} />
+                        </div>
+                      )}
+                      <div class="project-content">
+                        <span class="status-badge completed">Completed</span>
+                        <h4>{project.data.title}</h4>
+                        <p>{project.data.description}</p>
+                        {project.data.team && project.data.team.length > 0 && (
+                          <div class="project-team">
+                            <strong>Team:</strong> {project.data.team.join(', ')}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {plannedProjects.length > 0 && (
+              <div class="project-group">
+                <h3>Planned Projects</h3>
+                <div class="projects-grid">
+                  {plannedProjects.map((project) => (
+                    <div class="project-card">
+                      <div class="project-content">
+                        <span class="status-badge planned">Planned</span>
+                        <h4>{project.data.title}</h4>
+                        <p>{project.data.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+
+      <!-- Publications Section -->
+      <div class="research-section">
+        <h2 class="section-title">Publications</h2>
+        
+        {publications.length === 0 ? (
           <div class="placeholder-note">
             <p>Publications will appear here once added through the CMS.</p>
             <a href="/crosby-projects/admin/" class="btn">Add Publications via CMS</a>
           </div>
-        </div>
+        ) : (
+          <div class="publications-list">
+            {sortedPublications.map((pub) => (
+              <div class="publication-item">
+                <div class="pub-type">{pub.data.type}</div>
+                <h4>{pub.data.title}</h4>
+                <div class="pub-authors">{pub.data.authors.join(', ')}</div>
+                <div class="pub-meta">
+                  <span class="pub-date">
+                    {pub.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}
+                  </span>
+                  {pub.data.venue && (
+                    <span class="pub-venue">{pub.data.venue}</span>
+                  )}
+                </div>
+                {pub.data.abstract && (
+                  <p class="pub-abstract">{pub.data.abstract}</p>
+                )}
+                <div class="pub-links">
+                  {pub.data.doi && (
+                    <a href={`https://doi.org/${pub.data.doi}`} target="_blank" rel="noopener noreferrer">DOI</a>
+                  )}
+                  {pub.data.pdf && (
+                    <a href={pub.data.pdf} target="_blank" rel="noopener noreferrer">PDF</a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   </section>
-
   <style>
     .page-hero {
       background-color: var(--carthage-red);
@@ -44,36 +163,145 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       padding: 3rem 0;
       margin-bottom: var(--spacing-xl);
     }
-
     .page-hero h1 {
       color: var(--carthage-white);
       margin: 0;
     }
-
-    .research-categories {
-      display: grid;
-      gap: var(--spacing-xl);
-      max-width: 900px;
-      margin: var(--spacing-xl) auto;
+    .research-section {
+      margin-bottom: var(--spacing-2xl);
     }
-
-    .category-card {
-      padding: var(--spacing-xl);
-      background-color: var(--carthage-white);
-      border: 2px solid var(--carthage-gray-light);
-    }
-
-    .category-card h2 {
+    .section-title {
       color: var(--carthage-red);
+      border-bottom: 2px solid var(--carthage-red);
+      padding-bottom: var(--spacing-sm);
+      margin-bottom: var(--spacing-lg);
+    }
+    .placeholder-note {
+      padding: var(--spacing-xl);
+      background-color: var(--carthage-gray-light);
+      border-radius: 8px;
+      text-align: center;
+    }
+    .project-group {
+      margin-bottom: var(--spacing-xl);
+    }
+    .project-group h3 {
+      color: var(--carthage-gray-dark);
+      margin-bottom: var(--spacing-md);
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: var(--spacing-lg);
+    }
+    .project-card {
+      background: var(--carthage-white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .project-image {
+      height: 180px;
+      overflow: hidden;
+      background-color: var(--carthage-gray-light);
+    }
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .project-content {
+      padding: var(--spacing-lg);
+    }
+    .status-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 4px;
       margin-bottom: var(--spacing-sm);
     }
-
-    .placeholder-note {
-      margin-top: var(--spacing-lg);
-      padding: var(--spacing-md);
-      background-color: var(--carthage-gray-light);
+    .status-badge.active {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    .status-badge.completed {
+      background-color: #cce5ff;
+      color: #004085;
+    }
+    .status-badge.planned {
+      background-color: #fff3cd;
+      color: #856404;
+    }
+    .project-content h4 {
+      color: var(--carthage-red);
+      margin: 0 0 var(--spacing-sm) 0;
+    }
+    .project-content p {
+      color: var(--carthage-gray-dark);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .project-team, .project-funding {
+      font-size: 0.85rem;
+      color: var(--carthage-gray);
+      margin-top: var(--spacing-sm);
+    }
+    .publications-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+    }
+    .publication-item {
+      padding: var(--spacing-lg);
+      background: var(--carthage-white);
+      border-left: 4px solid var(--carthage-red);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    }
+    .pub-type {
+      font-size: 0.75rem;
+      color: var(--carthage-blue);
+      text-transform: uppercase;
+      margin-bottom: var(--spacing-xs);
+    }
+    .publication-item h4 {
+      color: var(--carthage-gray-dark);
+      margin: 0 0 var(--spacing-xs) 0;
+    }
+    .pub-authors {
+      font-size: 0.9rem;
+      color: var(--carthage-gray);
+      margin-bottom: var(--spacing-xs);
+    }
+    .pub-meta {
+      font-size: 0.85rem;
+      color: var(--carthage-gray);
+    }
+    .pub-venue {
+      margin-left: var(--spacing-sm);
+      font-style: italic;
+    }
+    .pub-abstract {
+      font-size: 0.9rem;
+      color: var(--carthage-gray-dark);
+      margin-top: var(--spacing-sm);
+      line-height: 1.5;
+    }
+    .pub-links {
+      margin-top: var(--spacing-sm);
+      display: flex;
+      gap: var(--spacing-sm);
+    }
+    .pub-links a {
+      font-size: 0.85rem;
+      color: var(--carthage-blue);
+      text-decoration: none;
+      padding: 2px 8px;
+      border: 1px solid var(--carthage-blue);
       border-radius: 4px;
-      text-align: center;
+    }
+    .pub-links a:hover {
+      background-color: var(--carthage-blue);
+      color: var(--carthage-white);
     }
   </style>
 </BaseLayout>

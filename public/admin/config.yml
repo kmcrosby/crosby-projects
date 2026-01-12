@@ -2,9 +2,7 @@ backend:
   name: github
   repo: kmcrosby/crosby-projects
   branch: main
-  base_url: https://github.com
-  auth_endpoint: /login/oauth/authorize
-  app_id: Ov23lioHSWCLPLJ24ydB
+  base_url: https://sveltia-cms-auth.kcrosby.workers.dev
 
 media_folder: "public/images/uploads"
 public_folder: "/crosby-projects/images/uploads"

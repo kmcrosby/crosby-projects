@@ -1,9 +1,10 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: kmcrosby/crosby-projects
   branch: main
 
 media_folder: "public/images/uploads"
-public_folder: "/images/uploads"
+public_folder: "/crosby-projects/images/uploads"
 
 collections:
   # Student Bios

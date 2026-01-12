@@ -6,7 +6,7 @@ const students = defineCollection({
     name: z.string(),
     photo: z.string().optional(),
     major: z.string(),
-    year: z.string(),
+    graduationYear: z.string(),
     researchFocus: z.string(),
     accomplishments: z.array(z.string()).optional().default([]),
     email: z.string().optional().default(''),

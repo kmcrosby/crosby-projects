@@ -18,7 +18,7 @@ collections:
       - { label: "Name", name: "name", widget: "string" }
       - { label: "Photo", name: "photo", widget: "image", required: false }
       - { label: "Major", name: "major", widget: "string" }
-      - { label: "Year", name: "year", widget: "select", options: ["Freshman", "Sophomore", "Junior", "Senior", "Graduate"] }
+      - { label: "Graduation Year", name: "graduationYear", widget: "select", options: ["2025", "2026", "2027", "2028", "2029", "2030"], hint: "Expected graduation year" }
       - { label: "Research Focus", name: "researchFocus", widget: "text" }
       - { label: "Bio", name: "body", widget: "markdown" }
       - { label: "Accomplishments", name: "accomplishments", widget: "list", required: false }

@@ -37,7 +37,7 @@ const students = await getCollection('students');
               <div class="student-info">
                 <h2>{student.data.name}</h2>
                 <p class="student-meta">
-                  {student.data.major} • {student.data.year}
+                  {student.data.major} • Class of {student.data.graduationYear}
                 </p>
                 <p class="student-focus">{student.data.researchFocus}</p>
                 {student.data.accomplishments && student.data.accomplishments.length > 0 && (

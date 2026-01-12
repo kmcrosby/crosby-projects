@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Partners - Carthage Space Sciences">
+  <section class="page-hero">
+    <div class="container">
+      <h1>Partners & Sponsors</h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="lead text-center">
+        We collaborate with leading organizations in aerospace, academia, and government to advance space technology.
+      </p>
+
+      <div class="partner-categories">
+        <div class="category">
+          <h2>Industry Partners</h2>
+          <p>Commercial space companies and aerospace industry leaders</p>
+          <div class="example-partners">
+            <div class="partner-card">
+              <h3>Blue Origin</h3>
+              <p>Long-standing partnership for payload flights and research collaboration</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="category">
+          <h2>Government Agencies</h2>
+          <p>Federal and state organizations supporting our research</p>
+          <div class="example-partners">
+            <div class="partner-card">
+              <h3>NASA</h3>
+              <p>Multiple active NASA-funded programs and research grants</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="category">
+          <h2>Academic Partners</h2>
+          <p>Universities and research institutions</p>
+          <div class="example-partners">
+            <div class="partner-card">
+              <h3>Wisconsin Space Grant Consortium</h3>
+              <p>Coordinating space education and research across Wisconsin</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="placeholder-note">
+        <h3>Add More Partners</h3>
+        <p>Partner logos and information can be managed through the CMS admin interface.</p>
+        <a href="/crosby-projects/admin/" class="btn">Manage Partners via CMS</a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .page-hero {
+      background-color: var(--carthage-red);
+      color: var(--carthage-white);
+      padding: 3rem 0;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .page-hero h1 {
+      color: var(--carthage-white);
+      margin: 0;
+    }
+
+    .partner-categories {
+      max-width: 1000px;
+      margin: var(--spacing-2xl) auto;
+      display: grid;
+      gap: var(--spacing-xl);
+    }
+
+    .category h2 {
+      color: var(--carthage-red);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .category > p {
+      color: var(--carthage-gray);
+      font-style: italic;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .example-partners {
+      display: grid;
+      gap: var(--spacing-md);
+    }
+
+    .partner-card {
+      padding: var(--spacing-md);
+      background-color: var(--carthage-white);
+      border: 2px solid var(--carthage-gray-light);
+      border-left: 4px solid var(--carthage-red);
+    }
+
+    .partner-card h3 {
+      color: var(--carthage-red);
+      font-size: 1.2rem;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .partner-card p {
+      margin: 0;
+    }
+
+    .placeholder-note {
+      max-width: 600px;
+      margin: var(--spacing-2xl) auto;
+      text-align: center;
+      padding: var(--spacing-xl);
+      background-color: var(--carthage-gray-light);
+      border-radius: 8px;
+    }
+
+    .placeholder-note h3 {
+      color: var(--carthage-red);
+      margin-bottom: var(--spacing-sm);
+    }
+  </style>
+</BaseLayout>

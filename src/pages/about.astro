@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About - Carthage Space Sciences">
+  <section class="page-hero">
+    <div class="container">
+      <h1>About the Program</h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="content-wrapper">
+        <h2>Mission</h2>
+        <p class="lead">
+          The Carthage College Space Sciences program is dedicated to solving critical technology 
+          problems for sustained human presence in space.
+        </p>
+        
+        <h3>Focus Areas</h3>
+        <div class="grid grid-2">
+          <div class="focus-area">
+            <h4>Propellant Transfer</h4>
+            <p>Developing technologies for safe and efficient propellant transfer in microgravity environments.</p>
+          </div>
+          <div class="focus-area">
+            <h4>Mass Gauging</h4>
+            <p>Creating innovative solutions for accurate mass measurement in space.</p>
+          </div>
+          <div class="focus-area">
+            <h4>Propellant Management</h4>
+            <p>Advancing systems for managing propellants in zero-gravity conditions.</p>
+          </div>
+          <div class="focus-area">
+            <h4>Microgravity Experiments</h4>
+            <p>Conducting cutting-edge research through parabolic flights and ground-based testing.</p>
+          </div>
+        </div>
+
+        <h3>Program Director</h3>
+        <p>
+          Dr. Kevin Crosby directs both the Carthage College Space Sciences program and the 
+          Wisconsin Space Grant Consortium, bringing extensive experience in fluid mechanics, 
+          space physics, and microgravity phenomena.
+        </p>
+
+        <h3>What Makes Us Unique</h3>
+        <ul>
+          <li>Undergraduates competing against graduate programs and aerospace companies</li>
+          <li>Multiple active NASA-funded programs</li>
+          <li>Direct partnerships with commercial space companies</li>
+          <li>Hands-on research experience from day one</li>
+          <li>Award-winning student achievements including NASA's TechLeap prize</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .page-hero {
+      background-color: var(--carthage-red);
+      color: var(--carthage-white);
+      padding: 3rem 0;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .page-hero h1 {
+      color: var(--carthage-white);
+      margin: 0;
+    }
+
+    .content-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .focus-area {
+      padding: var(--spacing-md);
+      background-color: var(--carthage-gray-light);
+      border-left: 4px solid var(--carthage-red);
+    }
+
+    .focus-area h4 {
+      color: var(--carthage-red);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    ul {
+      list-style-position: inside;
+      line-height: 2;
+    }
+
+    li {
+      margin-bottom: var(--spacing-xs);
+    }
+  </style>
+</BaseLayout>

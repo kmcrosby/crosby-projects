@@ -1,0 +1,209 @@
+/* Global CSS - Carthage College Brand */
+
+:root {
+  /* Primary Colors - Carthage Reds */
+  --carthage-red: #D0202E;
+  --carthage-red-light: #EE2A37;
+  --carthage-red-dark: #7A232F;
+  
+  /* Accent Colors */
+  --carthage-blue: #3AB0C8;
+  --carthage-blue-dark: #003C4B;
+  --carthage-blue-light: #6BA2B8;
+  
+  /* Neutrals */
+  --carthage-gray: #565656;
+  --carthage-gray-light: #D3CCBD;
+  --carthage-black: #000000;
+  --carthage-white: #FFFFFF;
+  
+  /* Typography */
+  --font-sans: Arial, 'Helvetica Neue', sans-serif;
+  --font-serif: 'Times New Roman', Times, serif;
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 4rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-serif);
+  color: var(--carthage-gray);
+  line-height: 1.6;
+  background-color: var(--carthage-white);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: bold;
+  color: var(--carthage-red);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-md);
+}
+
+h1 {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+h2 {
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+p {
+  margin-bottom: var(--spacing-sm);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+a {
+  color: var(--carthage-red);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--carthage-red-light);
+  text-decoration: underline;
+}
+
+/* Utility Classes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.section {
+  padding: var(--spacing-2xl) 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-red {
+  color: var(--carthage-red);
+}
+
+.bg-red {
+  background-color: var(--carthage-red);
+  color: var(--carthage-white);
+}
+
+.bg-gray-light {
+  background-color: var(--carthage-gray-light);
+}
+
+.btn {
+  display: inline-block;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background-color: var(--carthage-red);
+  color: var(--carthage-white);
+  font-family: var(--font-sans);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: var(--carthage-red-dark);
+  text-decoration: none;
+}
+
+.btn-secondary {
+  background-color: var(--carthage-blue);
+}
+
+.btn-secondary:hover {
+  background-color: var(--carthage-blue-dark);
+}
+
+/* Grid System */
+.grid {
+  display: grid;
+  gap: var(--spacing-md);
+}
+
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.grid-4 {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* Card Component */
+.card {
+  background-color: var(--carthage-white);
+  border: 2px solid var(--carthage-gray-light);
+  padding: var(--spacing-md);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  margin-bottom: var(--spacing-sm);
+}
+
+/* Responsive Images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  .section {
+    padding: var(--spacing-xl) 0;
+  }
+}

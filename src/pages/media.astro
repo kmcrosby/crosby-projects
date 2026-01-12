@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Media - Carthage Space Sciences">
+  <section class="page-hero">
+    <div class="container">
+      <h1>Media & Gallery</h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="media-sections">
+        <div class="media-section">
+          <h2>Media Coverage</h2>
+          <p class="lead">Press features, interviews, and media appearances.</p>
+          <div class="placeholder-note">
+            <p>Media coverage will appear here once added through the CMS.</p>
+            <a href="/crosby-projects/admin/" class="btn">Add Media Coverage via CMS</a>
+          </div>
+        </div>
+
+        <div class="media-section">
+          <h2>Photo Galleries</h2>
+          <p class="lead">Images from our experiments, events, and research activities.</p>
+          <div class="placeholder-note">
+            <p>Photo galleries will appear here once added through the CMS.</p>
+            <a href="/crosby-projects/admin/" class="btn">Add Galleries via CMS</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .page-hero {
+      background-color: var(--carthage-red);
+      color: var(--carthage-white);
+      padding: 3rem 0;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .page-hero h1 {
+      color: var(--carthage-white);
+      margin: 0;
+    }
+
+    .media-sections {
+      display: grid;
+      gap: var(--spacing-2xl);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .media-section {
+      padding: var(--spacing-xl);
+      background-color: var(--carthage-white);
+      border-left: 4px solid var(--carthage-red);
+    }
+
+    .media-section h2 {
+      color: var(--carthage-red);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .placeholder-note {
+      margin-top: var(--spacing-lg);
+      padding: var(--spacing-md);
+      background-color: var(--carthage-gray-light);
+      border-radius: 4px;
+      text-align: center;
+    }
+  </style>
+</BaseLayout>

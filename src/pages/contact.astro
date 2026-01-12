@@ -1,0 +1,240 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Contact - Carthage Space Sciences">
+  <section class="page-hero">
+    <div class="container">
+      <h1>Contact Us</h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h2>Get in Touch</h2>
+          <p>
+            Have questions about our program? Interested in collaboration or partnership? 
+            We'd love to hear from you.
+          </p>
+
+          <div class="info-block">
+            <h3>Program Director</h3>
+            <p>
+              <strong>Dr. Kevin Crosby</strong><br />
+              Director, Space Sciences Program<br />
+              Director, Wisconsin Space Grant Consortium
+            </p>
+          </div>
+
+          <div class="info-block">
+            <h3>Location</h3>
+            <p>
+              Carthage College<br />
+              2001 Alford Park Drive<br />
+              Kenosha, WI 53140
+            </p>
+          </div>
+
+          <div class="info-block">
+            <h3>Connect</h3>
+            <p>
+              <a href="https://www.carthage.edu" target="_blank">Carthage College Website</a><br />
+              <a href="https://wisconsinspacegrant.org" target="_blank">Wisconsin Space Grant Consortium</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="contact-form-wrapper">
+          <h2>Send Us a Message</h2>
+          <form 
+            id="contact-form" 
+            action="https://formspree.io/f/YOUR_FORM_ID" 
+            method="POST"
+            class="contact-form"
+          >
+            <div class="form-group">
+              <label for="name">Name *</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject *</label>
+              <input type="text" id="subject" name="subject" required />
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea id="message" name="message" rows="6" required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="interest">I'm interested in:</label>
+              <select id="interest" name="interest">
+                <option value="">Select an option</option>
+                <option value="student">Joining as a Student</option>
+                <option value="collaboration">Research Collaboration</option>
+                <option value="partnership">Partnership Opportunity</option>
+                <option value="media">Media Inquiry</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn">Send Message</button>
+            <p class="form-status" id="form-status"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .page-hero {
+      background-color: var(--carthage-red);
+      color: var(--carthage-white);
+      padding: 3rem 0;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .page-hero h1 {
+      color: var(--carthage-white);
+      margin: 0;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: var(--spacing-xl);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .contact-info h2,
+    .contact-form-wrapper h2 {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .info-block {
+      margin-bottom: var(--spacing-lg);
+      padding-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--carthage-gray-light);
+    }
+
+    .info-block:last-child {
+      border-bottom: none;
+    }
+
+    .info-block h3 {
+      font-size: 1.1rem;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .info-block p {
+      line-height: 1.8;
+    }
+
+    .contact-form {
+      background-color: var(--carthage-gray-light);
+      padding: var(--spacing-lg);
+      border-radius: 4px;
+    }
+
+    .form-group {
+      margin-bottom: var(--spacing-md);
+    }
+
+    label {
+      display: block;
+      font-family: var(--font-sans);
+      font-weight: bold;
+      margin-bottom: var(--spacing-xs);
+      color: var(--carthage-gray);
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: var(--spacing-sm);
+      border: 2px solid var(--carthage-white);
+      border-radius: 4px;
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--carthage-red);
+    }
+
+    .form-status {
+      margin-top: var(--spacing-md);
+      padding: var(--spacing-sm);
+      border-radius: 4px;
+      display: none;
+    }
+
+    .form-status.success {
+      display: block;
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .form-status.error {
+      display: block;
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <script>
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData(form);
+        
+        try {
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          if (response.ok) {
+            status.textContent = 'Thank you! Your message has been sent successfully.';
+            status.className = 'form-status success';
+            form.reset();
+          } else {
+            throw new Error('Form submission failed');
+          }
+        } catch (error) {
+          status.textContent = 'Oops! There was a problem submitting your form. Please try again.';
+          status.className = 'form-status error';
+        }
+      });
+    }
+  </script>
+</BaseLayout>

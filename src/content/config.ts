@@ -27,10 +27,6 @@ const news = defineCollection({
   }),
 });
 
-cimport { defineCollection, z } from 'astro:content';
-
-// Keep your existing collections (students, news, etc.)
-
 const projects = defineCollection({
   type: 'content',
   schema: z.object({
@@ -44,7 +40,6 @@ const projects = defineCollection({
     endDate: z.coerce.date().optional(),
   }),
 });
-
 
 const publications = defineCollection({
   type: 'content',

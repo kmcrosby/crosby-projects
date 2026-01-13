@@ -1,7 +1,7 @@
 ---
 title: Test Project
 slug: test slug
-featured: false
+featured: true
 image: /crosby-projects/images/uploads/chassis pic.jpg
 description: short description of this project.
 status: Active

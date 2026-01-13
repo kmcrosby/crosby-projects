@@ -1,6 +1,5 @@
 ---
 title: Test Project
-slug: New project
 featured: true
 image: /crosby-projects/images/uploads/chassis pic.jpg
 description: short description of this project.

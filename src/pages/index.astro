@@ -42,7 +42,7 @@ const featuredProjects = allProjects
         <h2 class="text-center">Featured Technology</h2>
         <div class="projects-grid">
           {featuredProjects.map((project) => (
-            <a href={`/crosby-projects/projects/${project.data.slug}/`} class="project-card">
+            <a href={`/crosby-projects/projects/${project.slug}/`} class="project-card">
               {project.data.image ? (
                 <div class="project-image">
                   <img 

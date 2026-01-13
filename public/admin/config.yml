@@ -49,7 +49,6 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Slug", name: "slug", widget: "string" }
       - { label: "Featured on Homepage", name: "featured", widget: "boolean", default: false, hint: "Check to display this project on the homepage" }
       - { label: "Featured Image", name: "image", widget: "image", required: false }
       - { label: "Short Description", name: "description", widget: "text" }

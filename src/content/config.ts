@@ -31,7 +31,6 @@ const projects = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
-    slug: z.string(),
     featured: z.boolean().default(false),
     image: z.string().optional(),
     description: z.string(),

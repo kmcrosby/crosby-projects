@@ -49,16 +49,14 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Status", name: "status", widget: "select", options: ["Active", "Completed", "Planned"] }
-      - { label: "Start Date", name: "startDate", widget: "datetime" }
-      - { label: "End Date", name: "endDate", widget: "datetime", required: false }
-      - { label: "Short Description", name: "description", widget: "text" }
-      - { label: "Full Description", name: "body", widget: "markdown" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Featured on Homepage", name: "featured", widget: "boolean", default: false, hint: "Check to display this project on the homepage" }
       - { label: "Featured Image", name: "image", widget: "image", required: false }
-      - { label: "Gallery Images", name: "gallery", widget: "list", field: { label: "Image", name: "image", widget: "image" }, required: false }
-      - { label: "Team Members", name: "team", widget: "list", required: false }
-      - { label: "Funding Source", name: "fundingSource", widget: "string", required: false }
-      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Short Description", name: "description", widget: "text" }
+      - { label: "Status", name: "status", widget: "select", options: ["Active", "Completed", "Upcoming"] }
+      - { label: "Start Date", name: "startDate", widget: "datetime", required: false }
+      - { label: "End Date", name: "endDate", widget: "datetime", required: false }
+      - { label: "Full Content", name: "body", widget: "markdown" }
 
   # Publications
   - name: "publications"

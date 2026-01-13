@@ -27,21 +27,24 @@ const news = defineCollection({
   }),
 });
 
+cimport { defineCollection, z } from 'astro:content';
+
+// Keep your existing collections (students, news, etc.)
+
 const projects = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
-    status: z.string(),
-    startDate: z.coerce.date(),
-    endDate: z.coerce.date().optional(),
-    description: z.string(),
+    slug: z.string(),
+    featured: z.boolean().default(false),
     image: z.string().optional(),
-    gallery: z.array(z.string()).optional().default([]),
-    team: z.array(z.string()).optional().default([]),
-    fundingSource: z.string().optional(),
-    tags: z.array(z.string()).optional().default([]),
+    description: z.string(),
+    status: z.enum(['Active', 'Completed', 'Upcoming']),
+    startDate: z.coerce.date().optional(),
+    endDate: z.coerce.date().optional(),
   }),
 });
+
 
 const publications = defineCollection({
   type: 'content',

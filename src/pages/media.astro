@@ -34,7 +34,7 @@ function getImagePath(imagePath: string | undefined): string | null {
       ) : (
         <div class="media-grid">
           {sortedMedia.map((item) => (
-            <article class="media-card">
+            <article class={`media-card ${!item.data.image ? 'no-image' : ''}`}>
               {item.data.image && (
                 <div class="media-image">
                   <img src={getImagePath(item.data.image)} alt={item.data.title} />
@@ -108,6 +108,9 @@ function getImagePath(imagePath: string | undefined): string | null {
     @media (min-width: 768px) {
       .media-card {
         grid-template-columns: 200px 1fr;
+      }
+      .media-card.no-image {
+        grid-template-columns: 1fr;
       }
     }
     .media-image {

@@ -5,7 +5,7 @@ backend:
   base_url: https://sveltia-cms-auth.kcrosby.workers.dev
 
 media_folder: "public/images/uploads"
-public_folder: "/crosby-projects/images/uploads"
+public_folder: "/images/uploads"
 
 collections:
   # Student Bios

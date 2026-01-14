@@ -4,6 +4,12 @@ import { getCollection } from 'astro:content';
 
 const media = await getCollection('media');
 const sortedMedia = media.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+// Helper function to get the correct image path
+function getImagePath(imagePath: string | undefined): string | null {
+  if (!imagePath) return null;
+  return imagePath.startsWith('/') ? `/crosby-projects${imagePath}` : imagePath;
+}
 ---
 <BaseLayout title="Media Coverage - Carthage Space Sciences">
   <section class="page-hero">
@@ -31,7 +37,7 @@ const sortedMedia = media.sort((a, b) => b.data.date.getTime() - a.data.date.get
             <article class="media-card">
               {item.data.image && (
                 <div class="media-image">
-                  <img src={item.data.image} alt={item.data.title} />
+                  <img src={getImagePath(item.data.image)} alt={item.data.title} />
                 </div>
               )}
               <div class="media-content">

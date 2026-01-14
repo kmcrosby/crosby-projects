@@ -8,7 +8,7 @@ summary: |-
 
   Kevin Crosby is a professor of physics, astronomy and computer science at Carthage College, and director of the Wisconsin Space Grant Consortium. He’s also a visiting senior scientist at NASA. Crosby and his team of students at Carthage have been working on microgravity ullage trapping, a method for increasing in-space refueling efficiency.
 link: https://spacegrant.org/2025/12/12/wisconsin-space-grant-director/
-image: ''
+image: /images/uploads/Global_Mars_in_colour_ESA24894473-1024x576.jpg
 tags: []
 ---
 NASA has awarded a team of Wisconsin researchers $500,000 to continue working on a system for refueling spacecraft in space.

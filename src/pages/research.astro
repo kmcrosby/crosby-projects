@@ -5,12 +5,24 @@ import { getCollection } from 'astro:content';
 const projects = await getCollection('projects');
 const publications = await getCollection('publications');
 
-const sortedProjects = projects.sort((a, b) => b.data.startDate.getTime() - a.data.startDate.getTime());
+// Sort projects, handling optional startDate
+const sortedProjects = projects.sort((a, b) => {
+  const dateA = a.data.startDate ? new Date(a.data.startDate).getTime() : 0;
+  const dateB = b.data.startDate ? new Date(b.data.startDate).getTime() : 0;
+  return dateB - dateA;
+});
+
 const sortedPublications = publications.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 const activeProjects = sortedProjects.filter(p => p.data.status === 'Active');
 const completedProjects = sortedProjects.filter(p => p.data.status === 'Completed');
-const plannedProjects = sortedProjects.filter(p => p.data.status === 'Planned');
+const upcomingProjects = sortedProjects.filter(p => p.data.status === 'Upcoming');
+
+// Helper function to get the correct image path
+function getImagePath(imagePath: string | undefined): string | null {
+  if (!imagePath) return null;
+  return imagePath.startsWith('/') ? `/crosby-projects${imagePath}` : imagePath;
+}
 ---
 <BaseLayout title="Research - Carthage Space Sciences">
   <section class="page-hero">
@@ -40,28 +52,18 @@ const plannedProjects = sortedProjects.filter(p => p.data.status === 'Planned');
                 <h3>Active Projects</h3>
                 <div class="projects-grid">
                   {activeProjects.map((project) => (
-                    <div class="project-card">
+                    <a href={`/crosby-projects/projects/${project.slug}/`} class="project-card">
                       {project.data.image && (
                         <div class="project-image">
-                          <img src={project.data.image} alt={project.data.title} />
+                          <img src={getImagePath(project.data.image)} alt={project.data.title} />
                         </div>
                       )}
                       <div class="project-content">
                         <span class="status-badge active">Active</span>
                         <h4>{project.data.title}</h4>
                         <p>{project.data.description}</p>
-                        {project.data.team && project.data.team.length > 0 && (
-                          <div class="project-team">
-                            <strong>Team:</strong> {project.data.team.join(', ')}
-                          </div>
-                        )}
-                        {project.data.fundingSource && (
-                          <div class="project-funding">
-                            <strong>Funding:</strong> {project.data.fundingSource}
-                          </div>
-                        )}
                       </div>
-                    </div>
+                    </a>
                   ))}
                 </div>
               </div>
@@ -72,40 +74,35 @@ const plannedProjects = sortedProjects.filter(p => p.data.status === 'Planned');
                 <h3>Completed Projects</h3>
                 <div class="projects-grid">
                   {completedProjects.map((project) => (
-                    <div class="project-card">
+                    <a href={`/crosby-projects/projects/${project.slug}/`} class="project-card">
                       {project.data.image && (
                         <div class="project-image">
-                          <img src={project.data.image} alt={project.data.title} />
+                          <img src={getImagePath(project.data.image)} alt={project.data.title} />
                         </div>
                       )}
                       <div class="project-content">
                         <span class="status-badge completed">Completed</span>
                         <h4>{project.data.title}</h4>
                         <p>{project.data.description}</p>
-                        {project.data.team && project.data.team.length > 0 && (
-                          <div class="project-team">
-                            <strong>Team:</strong> {project.data.team.join(', ')}
-                          </div>
-                        )}
                       </div>
-                    </div>
+                    </a>
                   ))}
                 </div>
               </div>
             )}
 
-            {plannedProjects.length > 0 && (
+            {upcomingProjects.length > 0 && (
               <div class="project-group">
-                <h3>Planned Projects</h3>
+                <h3>Upcoming Projects</h3>
                 <div class="projects-grid">
-                  {plannedProjects.map((project) => (
-                    <div class="project-card">
+                  {upcomingProjects.map((project) => (
+                    <a href={`/crosby-projects/projects/${project.slug}/`} class="project-card">
                       <div class="project-content">
-                        <span class="status-badge planned">Planned</span>
+                        <span class="status-badge upcoming">Upcoming</span>
                         <h4>{project.data.title}</h4>
                         <p>{project.data.description}</p>
                       </div>
-                    </div>
+                    </a>
                   ))}
                 </div>
               </div>
@@ -195,10 +192,18 @@ const plannedProjects = sortedProjects.filter(p => p.data.status === 'Planned');
       gap: var(--spacing-lg);
     }
     .project-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
       background: var(--carthage-white);
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     }
     .project-image {
       height: 180px;
@@ -209,6 +214,10 @@ const plannedProjects = sortedProjects.filter(p => p.data.status === 'Planned');
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .project-card:hover .project-image img {
+      transform: scale(1.05);
     }
     .project-content {
       padding: var(--spacing-lg);
@@ -228,7 +237,7 @@ const plannedProjects = sortedProjects.filter(p => p.data.status === 'Planned');
       background-color: #cce5ff;
       color: #004085;
     }
-    .status-badge.planned {
+    .status-badge.upcoming {
       background-color: #fff3cd;
       color: #856404;
     }
@@ -240,11 +249,7 @@ const plannedProjects = sortedProjects.filter(p => p.data.status === 'Planned');
       color: var(--carthage-gray-dark);
       font-size: 0.95rem;
       line-height: 1.5;
-    }
-    .project-team, .project-funding {
-      font-size: 0.85rem;
-      color: var(--carthage-gray);
-      margin-top: var(--spacing-sm);
+      margin: 0;
     }
     .publications-list {
       display: flex;

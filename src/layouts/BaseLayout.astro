@@ -6,7 +6,7 @@ interface Props {
   description?: string;
 }
 
-const { title, description = 'Carthage College Space Sciences Program' } = Astro.props;
+const { title, description = 'Low-Gravity Fluids Lab at Carthage College' } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL || '/crosby-projects';
 ---
 
@@ -26,7 +26,7 @@ const baseUrl = import.meta.env.BASE_URL || '/crosby-projects';
         <nav class="main-nav">
           <div class="logo">
             <a href={`${baseUrl}/`}>
-              <h1 class="site-title">Carthage Space Sciences</h1>
+              <h1 class="site-title">Low-Gravity Fluids Lab</h1>
             </a>
           </div>
           <ul class="nav-menu">
@@ -57,7 +57,7 @@ const baseUrl = import.meta.env.BASE_URL || '/crosby-projects';
       <div class="container">
         <div class="footer-content">
           <div class="footer-section">
-            <h3>Carthage Space Sciences</h3>
+            <h3>Low-Gravity Fluids Lab</h3>
             <p>Solving critical technology problems for sustained human presence in space</p>
           </div>
           <div class="footer-section">
@@ -79,7 +79,7 @@ const baseUrl = import.meta.env.BASE_URL || '/crosby-projects';
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} Carthage College Space Sciences Program. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Low-Gravity Fluids Lab at Carthage College. All rights reserved.</p>
         </div>
       </div>
     </footer>

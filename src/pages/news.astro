@@ -5,7 +5,7 @@ import { getCollection } from 'astro:content';
 const news = await getCollection('news');
 const sortedNews = news.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
-<BaseLayout title="News - Carthage Space Sciences">
+<BaseLayout title="News - Low-Gravity Fluids Lab">
   <section class="page-hero">
     <div class="container">
       <h1>News & Updates</h1>
@@ -14,7 +14,7 @@ const sortedNews = news.sort((a, b) => b.data.date.getTime() - a.data.date.getTi
   <section class="section">
     <div class="container">
       <p class="lead text-center">
-        The latest news, announcements, and updates from the Carthage Space Sciences program.
+        The latest news, announcements, and updates from the Low-Gravity Fluids Lab.
       </p>
       
       {sortedNews.length === 0 ? (

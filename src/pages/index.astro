@@ -1,0 +1,347 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+// Fetch featured projects
+const allProjects = await getCollection('projects');
+const featuredProjects = allProjects
+  .filter(project => project.data.featured)
+  .slice(0, 6); // Limit to 6 for 2 rows max
+---
+
+<BaseLayout title="Carthage Space Sciences Program">
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <h1>Carthage Space Sciences</h1>
+      <p class="hero-subtitle">Solving critical technology problems for sustained human presence in space</p>
+      <div class="hero-cta">
+        <a href="/crosby-projects/about" class="btn">Learn More</a>
+        <a href="/crosby-projects/join" class="btn btn-secondary">Join Our Program</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="intro text-center">
+        <h2>Pioneering Space Technology</h2>
+        <p class="lead">
+          The Carthage College Space Sciences program focuses on solving critical challenges 
+          for human space exploration, including propellant transfer, mass gauging, and 
+          propellant management in microgravity environments.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects Grid -->
+  {featuredProjects.length > 0 && (
+    <section class="section featured-projects">
+      <div class="container">
+        <h2 class="text-center">Featured Technology</h2>
+        <div class="projects-grid">
+          {featuredProjects.map((project) => (
+            <a href={`/crosby-projects/projects/${project.slug}/`} class="project-card">
+              {project.data.image ? (
+                <div class="project-image">
+                  <img 
+                    src={project.data.image.startsWith('/') ? `/crosby-projects${project.data.image}` : project.data.image} 
+                    alt={project.data.title}
+                    loading="lazy"
+                  />
+                </div>
+              ) : (
+                <div class="project-image placeholder">
+                  <span>🚀</span>
+                </div>
+              )}
+              <div class="project-info">
+                <h3>{project.data.title}</h3>
+                <p>{project.data.description}</p>
+                <span class={`status-badge status-${project.data.status.toLowerCase()}`}>{project.data.status}</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section bg-gray-light">
+    <div class="container">
+      <h2 class="text-center">Program Highlights</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Undergraduate Research</h3>
+          <p>Our students compete against graduate programs and aerospace companies, winning recognition including NASA's TechLeap prize.</p>
+          <a href="/crosby-projects/students" class="btn">Meet Our Students</a>
+        </div>
+        <div class="card">
+          <h3>NASA Partnerships</h3>
+          <p>Active NASA-funded programs and collaborations with industry leaders like Blue Origin.</p>
+          <a href="/crosby-projects/partners" class="btn">Our Partners</a>
+        </div>
+        <div class="card">
+          <h3>Real-World Impact</h3>
+          <p>Publishing research, conducting microgravity experiments, and advancing space technology.</p>
+          <a href="/crosby-projects/research" class="btn">View Research</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center">Latest News</h2>
+      <div class="news-grid">
+        <div class="news-item">
+          <h3>Program Updates</h3>
+          <p>Stay tuned for the latest news and achievements from our space sciences program.</p>
+          <a href="/crosby-projects/media">View All News →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-red">
+    <div class="container text-center">
+      <h2 style="color: white;">Ready to Launch Your Future?</h2>
+      <p style="color: white; font-size: 1.2rem; margin-bottom: 2rem;">
+        Join our team of student researchers working on cutting-edge space technology
+      </p>
+      <a href="/crosby-projects/join" class="btn" style="background-color: white; color: var(--carthage-red);">Apply Now</a>
+    </div>
+  </section>
+
+  <style>
+    .hero {
+      position: relative;
+      background: linear-gradient(135deg, var(--carthage-red) 0%, var(--carthage-red-dark) 100%);
+      color: var(--carthage-white);
+      padding: 6rem 0;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      color: var(--carthage-white);
+      font-size: 3.5rem;
+      margin-bottom: var(--spacing-md);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      font-family: var(--font-sans);
+      margin-bottom: var(--spacing-xl);
+      opacity: 0.95;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: var(--spacing-md);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-cta .btn {
+      background-color: var(--carthage-white);
+      color: var(--carthage-red);
+    }
+
+    .hero-cta .btn:hover {
+      background-color: var(--carthage-gray-light);
+    }
+
+    .hero-cta .btn-secondary {
+      background-color: transparent;
+      border: 2px solid var(--carthage-white);
+      color: var(--carthage-white);
+    }
+
+    .hero-cta .btn-secondary:hover {
+      background-color: var(--carthage-white);
+      color: var(--carthage-red);
+    }
+
+    .intro {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .lead {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: var(--carthage-gray);
+    }
+
+    /* Featured Projects Styles */
+    .featured-projects {
+      background-color: var(--carthage-white);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-lg);
+    }
+
+    @media (max-width: 900px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .project-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: var(--carthage-white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      background: var(--carthage-gray-light);
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.05);
+    }
+
+    .project-image.placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--carthage-red) 0%, var(--carthage-red-dark) 100%);
+    }
+
+    .project-image.placeholder span {
+      font-size: 4rem;
+    }
+
+    .project-info {
+      padding: var(--spacing-md);
+    }
+
+    .project-info h3 {
+      margin: 0 0 var(--spacing-sm) 0;
+      font-size: 1.25rem;
+      color: var(--carthage-black);
+    }
+
+    .project-info p {
+      margin: 0 0 var(--spacing-sm) 0;
+      color: var(--carthage-gray);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .status-active {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    .status-completed {
+      background: #e3f2fd;
+      color: #1565c0;
+    }
+
+    .status-upcoming {
+      background: #fff3e0;
+      color: #ef6c00;
+    }
+
+    /* End Featured Projects Styles */
+
+    .news-grid {
+      display: grid;
+      gap: var(--spacing-lg);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .news-item {
+      padding: var(--spacing-lg);
+      background-color: var(--carthage-white);
+      border-left: 4px solid var(--carthage-red);
+    }
+
+    .news-item h3 {
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .news-item a {
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+
+      .hero {
+        padding: 4rem 0;
+      }
+    }
+  </style>
+</BaseLayout>

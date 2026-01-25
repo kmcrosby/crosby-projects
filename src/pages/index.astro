@@ -17,10 +17,10 @@ const heroImage = settings.heroImage || '/images/hero-zerog-research.jpg';
 const heroTitle = settings.heroTitle || 'Low-Gravity Fluids Lab';
 const heroSubtitle = settings.heroSubtitle || 'Solving critical technology problems for sustained human presence in space';
 const heroOverlayOpacity = (settings.heroOverlayOpacity ?? 50) / 100;
-const heroButtons = settings.heroButtons || [
+const heroButtons = (settings.heroButtons || [
   { label: 'Learn More', url: '/about', style: 'primary' },
   { label: 'Join Our Program', url: '/join', style: 'secondary' },
-];
+]).filter(btn => btn.label && btn.url);
 
 // Color settings
 const primaryColor = settings.primaryColor || '#D0202E';

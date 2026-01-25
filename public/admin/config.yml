@@ -26,10 +26,10 @@ collections:
             name: "heroButtons"
             widget: "list"
             required: false
-            hint: "Add, edit, or remove buttons in the hero section. Leave empty for no buttons."
+            hint: "Add, edit, or remove buttons. Use the X button on each item to delete it."
             fields:
-              - { label: "Button Text", name: "label", widget: "string" }
-              - { label: "Link URL", name: "url", widget: "string", hint: "Use relative paths like /about or /join" }
+              - { label: "Button Text", name: "label", widget: "string", required: false }
+              - { label: "Link URL", name: "url", widget: "string", required: false, hint: "Use relative paths like /about or /join" }
               - { label: "Style", name: "style", widget: "select", options: ["primary", "secondary"], default: "primary", hint: "Primary = solid white, Secondary = outlined" }
           # Color Theme
           - { label: "Primary Color", name: "primaryColor", widget: "color", required: false, default: "#D0202E", hint: "Main brand color (buttons, headers, accents)" }

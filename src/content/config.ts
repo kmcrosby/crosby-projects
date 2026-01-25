@@ -106,6 +106,12 @@ const settings = defineCollection({
     primaryColorLight: z.string().optional().default('#EE2A37'),
     primaryColorDark: z.string().optional().default('#7A232F'),
     accentColor: z.string().optional().default('#3AB0C8'),
+    // Navigation
+    navigation: z.array(z.object({
+      label: z.string(),
+      url: z.string(),
+      enabled: z.boolean().default(true),
+    })).optional(),
   }),
 });
 

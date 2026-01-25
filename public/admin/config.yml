@@ -26,6 +26,16 @@ collections:
           - { label: "Primary Light", name: "primaryColorLight", widget: "color", required: false, default: "#EE2A37", hint: "Lighter variant for hover states" }
           - { label: "Primary Dark", name: "primaryColorDark", widget: "color", required: false, default: "#7A232F", hint: "Darker variant for gradients" }
           - { label: "Accent Color", name: "accentColor", widget: "color", required: false, default: "#3AB0C8", hint: "Secondary accent color" }
+          # Navigation
+          - label: "Navigation Menu"
+            name: "navigation"
+            widget: "list"
+            required: false
+            hint: "Drag to reorder. Uncheck 'Enabled' to hide a link without deleting it."
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "URL", name: "url", widget: "string", hint: "Use relative paths like /about or /contact" }
+              - { label: "Enabled", name: "enabled", widget: "boolean", default: true }
 
   # Pages
   - name: "pages"

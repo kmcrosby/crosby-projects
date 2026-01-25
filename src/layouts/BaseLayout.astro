@@ -19,6 +19,20 @@ const primaryColor = settings.primaryColor || '#D0202E';
 const primaryColorLight = settings.primaryColorLight || '#EE2A37';
 const primaryColorDark = settings.primaryColorDark || '#7A232F';
 const accentColor = settings.accentColor || '#3AB0C8';
+
+// Navigation with defaults
+const defaultNav = [
+  { label: 'Home', url: '/', enabled: true },
+  { label: 'About', url: '/about', enabled: true },
+  { label: 'Students', url: '/students', enabled: true },
+  { label: 'Research', url: '/research', enabled: true },
+  { label: 'Resources', url: '/resources', enabled: true },
+  { label: 'Media', url: '/media', enabled: true },
+  { label: 'Partners', url: '/partners', enabled: true },
+  { label: 'Join Us', url: '/join', enabled: true },
+  { label: 'Contact', url: '/contact', enabled: true },
+];
+const navigation = (settings.navigation || defaultNav).filter(item => item.enabled);
 ---
 
 <!DOCTYPE html>
@@ -49,15 +63,9 @@ const accentColor = settings.accentColor || '#3AB0C8';
             </a>
           </div>
           <ul class="nav-menu">
-            <li><a href={`${baseUrl}/`}>Home</a></li>
-            <li><a href={`${baseUrl}/about`}>About</a></li>
-            <li><a href={`${baseUrl}/students`}>Students</a></li>
-            <li><a href={`${baseUrl}/research`}>Research</a></li>
-            <li><a href={`${baseUrl}/resources`}>Resources</a></li>
-            <li><a href={`${baseUrl}/media`}>Media</a></li>
-            <li><a href={`${baseUrl}/partners`}>Partners</a></li>
-            <li><a href={`${baseUrl}/join`}>Join Us</a></li>
-            <li><a href={`${baseUrl}/contact`}>Contact</a></li>
+            {navigation.map((item) => (
+              <li><a href={`${baseUrl}${item.url}`}>{item.label}</a></li>
+            ))}
           </ul>
           <button class="mobile-menu-toggle" aria-label="Toggle menu">
             <span></span>

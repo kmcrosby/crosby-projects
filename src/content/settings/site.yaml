@@ -6,33 +6,31 @@ primaryColor: '#b3232f'
 primaryColorLight: '#EE2A37'
 primaryColorDark: '#7A232F'
 accentColor: '#3AB0C8'
-
-# Navigation
 navigation:
-  - label: "Home"
-    url: "/"
+  - label: Home
+    url: /
     enabled: true
-  - label: "About"
-    url: "/about"
+  - label: About
+    url: /about
     enabled: true
-  - label: "Students"
-    url: "/students"
+  - label: Students
+    url: /students
     enabled: true
-  - label: "Research"
-    url: "/research"
+  - label: Research
+    url: /research
     enabled: true
-  - label: "Resources"
-    url: "/resources"
+  - label: Resources
+    url: /resources
     enabled: true
-  - label: "Media"
-    url: "/media"
+  - label: Media
+    url: /media
     enabled: true
-  - label: "Partners"
-    url: "/partners"
+  - label: Partners
+    url: /partners
     enabled: true
-  - label: "Join Us"
-    url: "/join"
+  - label: Join
+    url: /join
     enabled: true
-  - label: "Contact"
-    url: "/contact"
+  - label: Contact
+    url: /contact
     enabled: true

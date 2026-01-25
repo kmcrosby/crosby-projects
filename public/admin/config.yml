@@ -35,9 +35,9 @@ collections:
         label: "About Page"
         file: "src/content/pages/about.md"
         fields:
-          - { label: "Page Title", name: "title", widget: "string" }
-          - { label: "Hero Title", name: "heroTitle", widget: "string", required: false }
-          - { label: "Mission Statement", name: "mission", widget: "text", required: false }
+          - { label: "Page Title", name: "title", widget: "string", default: "About the Program" }
+          - { label: "Hero Title", name: "heroTitle", widget: "string", required: false, default: "About the Program" }
+          - { label: "Mission Statement", name: "mission", widget: "text", required: false, default: "The Carthage College Space Sciences program is dedicated to solving critical technology problems for sustained human presence in space." }
           - label: "Focus Areas"
             name: "focusAreas"
             widget: "list"
@@ -45,7 +45,7 @@ collections:
             fields:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
-          - { label: "Program Director Section", name: "directorSection", widget: "text", required: false }
+          - { label: "Program Director Section", name: "directorSection", widget: "text", required: false, default: "Dr. Kevin Crosby directs both the Carthage College Space Sciences program and the Wisconsin Space Grant Consortium, bringing extensive experience in fluid mechanics, space physics, and microgravity phenomena." }
           - label: "What Makes Us Unique"
             name: "uniquePoints"
             widget: "list"

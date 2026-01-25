@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mdfind:*)",
+      "Bash(find:*)",
+      "Bash([ -d ~/Library/Mobile Documents ])",
+      "Bash(wc:*)",
+      "Bash(python3:*)",
+      "Bash(source:*)",
+      "Bash(pip install:*)",
+      "Bash(python run_scan.py:*)",
+      "Bash(kill:*)",
+      "Bash(ls:*)",
+      "Bash(python:*)",
+      "Bash(xargs kill:*)"
+    ]
+  }
+}

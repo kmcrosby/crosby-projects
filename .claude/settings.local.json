@@ -21,7 +21,10 @@
       "Bash(npm run dev:*)",
       "Bash(gh run list:*)",
       "Bash(curl:*)",
-      "Bash(tr:*)"
+      "Bash(tr:*)",
+      "WebFetch(domain:www.carthage.edu)",
+      "Bash(node scripts/import-publications.js:*)",
+      "Bash(node scripts/import-publications.cjs:*)"
     ]
   }
 }

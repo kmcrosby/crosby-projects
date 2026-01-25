@@ -1,6 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
+
+const researchPage = await getEntry('pages', 'research');
+const pageData = researchPage?.data || {};
+
+const title = pageData.title || 'Research';
+const heroTitle = pageData.heroTitle || title;
+const intro = pageData.intro || 'Explore our projects, experiments, and publications advancing space technology.';
 
 const projects = await getCollection('projects');
 const publications = await getCollection('publications');
@@ -24,17 +31,15 @@ function getImagePath(imagePath: string | undefined): string | null {
   return imagePath.startsWith('/') ? `/crosby-projects${imagePath}` : imagePath;
 }
 ---
-<BaseLayout title="Research - Low-Gravity Fluids Lab">
+<BaseLayout title={`${title} - Low-Gravity Fluids Lab`}>
   <section class="page-hero">
     <div class="container">
-      <h1>Research</h1>
+      <h1>{heroTitle}</h1>
     </div>
   </section>
   <section class="section">
     <div class="container">
-      <p class="lead text-center">
-        Explore our projects, experiments, and publications advancing space technology.
-      </p>
+      <p class="lead text-center">{intro}</p>
 
       <!-- Projects Section -->
       <div class="research-section">

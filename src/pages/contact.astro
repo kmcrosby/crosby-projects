@@ -1,11 +1,28 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getEntry } from 'astro:content';
+
+const contactPage = await getEntry('pages', 'contact');
+const data = contactPage?.data || {};
+
+const title = data.title || 'Contact Us';
+const heroTitle = data.heroTitle || title;
+const intro = data.intro || 'Have questions about our program? Interested in collaboration or partnership? We\'d love to hear from you.';
+const directorName = data.directorName || 'Dr. Kevin Crosby';
+const directorTitle = data.directorTitle || 'Director, Space Sciences Program';
+const directorSubtitle = data.directorSubtitle || 'Director, Wisconsin Space Grant Consortium';
+const location = data.location || { name: 'Carthage College', address: '2001 Alford Park Drive', city: 'Kenosha, WI 53140' };
+const links = data.links || [
+  { label: 'Carthage College Website', url: 'https://www.carthage.edu' },
+  { label: 'Wisconsin Space Grant Consortium', url: 'https://wisconsinspacegrant.org' }
+];
+const formAction = data.formAction || 'https://formspree.io/f/YOUR_FORM_ID';
 ---
 
-<BaseLayout title="Contact - Low-Gravity Fluids Lab">
+<BaseLayout title={`${title} - Low-Gravity Fluids Lab`}>
   <section class="page-hero">
     <div class="container">
-      <h1>Contact Us</h1>
+      <h1>{heroTitle}</h1>
     </div>
   </section>
 
@@ -14,43 +31,46 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="contact-grid">
         <div class="contact-info">
           <h2>Get in Touch</h2>
-          <p>
-            Have questions about our program? Interested in collaboration or partnership? 
-            We'd love to hear from you.
-          </p>
+          <p>{intro}</p>
 
           <div class="info-block">
             <h3>Program Director</h3>
             <p>
-              <strong>Dr. Kevin Crosby</strong><br />
-              Director, Space Sciences Program<br />
-              Director, Wisconsin Space Grant Consortium
+              <strong>{directorName}</strong><br />
+              {directorTitle}<br />
+              {directorSubtitle}
             </p>
           </div>
 
           <div class="info-block">
             <h3>Location</h3>
             <p>
-              Carthage College<br />
-              2001 Alford Park Drive<br />
-              Kenosha, WI 53140
+              {location.name}<br />
+              {location.address}<br />
+              {location.city}
             </p>
           </div>
 
-          <div class="info-block">
-            <h3>Connect</h3>
-            <p>
-              <a href="https://www.carthage.edu" target="_blank">Carthage College Website</a><br />
-              <a href="https://wisconsinspacegrant.org" target="_blank">Wisconsin Space Grant Consortium</a>
-            </p>
-          </div>
+          {links.length > 0 && (
+            <div class="info-block">
+              <h3>Connect</h3>
+              <p>
+                {links.map((link, index) => (
+                  <>
+                    <a href={link.url} target="_blank">{link.label}</a>
+                    {index < links.length - 1 && <br />}
+                  </>
+                ))}
+              </p>
+            </div>
+          )}
         </div>
 
         <div class="contact-form-wrapper">
           <h2>Send Us a Message</h2>
-          <form 
-            id="contact-form" 
-            action="https://formspree.io/f/YOUR_FORM_ID" 
+          <form
+            id="contact-form"
+            action={formAction}
             method="POST"
             class="contact-form"
           >
@@ -211,9 +231,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     if (form) {
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
         const formData = new FormData(form);
-        
+
         try {
           const response = await fetch(form.action, {
             method: 'POST',

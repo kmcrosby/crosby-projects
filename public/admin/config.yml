@@ -52,6 +52,75 @@ collections:
             required: false
             field: { label: "Point", name: "point", widget: "string" }
 
+      - name: "join"
+        label: "Join Us Page"
+        file: "src/content/pages/join.md"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string", default: "Join Our Program" }
+          - { label: "Hero Title", name: "heroTitle", widget: "string", required: false, default: "Join Our Program" }
+          - { label: "Intro Text", name: "intro", widget: "text", required: false, default: "Ready to work on cutting-edge space technology? Join our team of undergraduate researchers solving real problems for space exploration." }
+          - label: "Benefits (Why Join Us?)"
+            name: "benefits"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+          - label: "Academic Requirements"
+            name: "academicRequirements"
+            widget: "list"
+            required: false
+            field: { label: "Requirement", name: "requirement", widget: "string" }
+          - label: "Personal Qualities"
+            name: "personalQualities"
+            widget: "list"
+            required: false
+            field: { label: "Quality", name: "quality", widget: "string" }
+          - label: "Application Steps"
+            name: "applicationSteps"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Step Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+          - { label: "CTA Title", name: "ctaTitle", widget: "string", required: false, default: "Ready to Launch Your Future?" }
+          - { label: "CTA Button Text", name: "ctaButtonText", widget: "string", required: false, default: "Contact Us Today" }
+
+      - name: "contact"
+        label: "Contact Page"
+        file: "src/content/pages/contact.md"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string", default: "Contact Us" }
+          - { label: "Hero Title", name: "heroTitle", widget: "string", required: false, default: "Contact Us" }
+          - { label: "Intro Text", name: "intro", widget: "text", required: false, default: "Have questions about our program? Interested in collaboration or partnership? We'd love to hear from you." }
+          - { label: "Director Name", name: "directorName", widget: "string", required: false, default: "Dr. Kevin Crosby" }
+          - { label: "Director Title", name: "directorTitle", widget: "string", required: false, default: "Director, Space Sciences Program" }
+          - { label: "Director Subtitle", name: "directorSubtitle", widget: "string", required: false, default: "Director, Wisconsin Space Grant Consortium" }
+          - label: "Location"
+            name: "location"
+            widget: "object"
+            required: false
+            fields:
+              - { label: "Name", name: "name", widget: "string", default: "Carthage College" }
+              - { label: "Address", name: "address", widget: "string", default: "2001 Alford Park Drive" }
+              - { label: "City/State/Zip", name: "city", widget: "string", default: "Kenosha, WI 53140" }
+          - label: "External Links"
+            name: "links"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+          - { label: "Form Action URL", name: "formAction", widget: "string", required: false, default: "https://formspree.io/f/YOUR_FORM_ID", hint: "Formspree or other form handler URL" }
+
+      - name: "research"
+        label: "Research Page"
+        file: "src/content/pages/research.md"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string", default: "Research" }
+          - { label: "Hero Title", name: "heroTitle", widget: "string", required: false, default: "Research" }
+          - { label: "Intro Text", name: "intro", widget: "text", required: false, default: "Explore our projects, experiments, and publications advancing space technology." }
+
   # Student Bios
   - name: "students"
     label: "Student Bios"

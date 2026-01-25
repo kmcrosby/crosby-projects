@@ -114,6 +114,8 @@ const pages = defineCollection({
   schema: z.object({
     title: z.string(),
     heroTitle: z.string().optional(),
+    intro: z.string().optional(),
+    // About page fields
     mission: z.string().optional(),
     focusAreas: z.array(z.object({
       title: z.string(),
@@ -121,6 +123,33 @@ const pages = defineCollection({
     })).optional(),
     directorSection: z.string().optional(),
     uniquePoints: z.array(z.string()).optional(),
+    // Join page fields
+    benefits: z.array(z.object({
+      title: z.string(),
+      description: z.string(),
+    })).optional(),
+    academicRequirements: z.array(z.string()).optional(),
+    personalQualities: z.array(z.string()).optional(),
+    applicationSteps: z.array(z.object({
+      title: z.string(),
+      description: z.string(),
+    })).optional(),
+    ctaTitle: z.string().optional(),
+    ctaButtonText: z.string().optional(),
+    // Contact page fields
+    directorName: z.string().optional(),
+    directorTitle: z.string().optional(),
+    directorSubtitle: z.string().optional(),
+    location: z.object({
+      name: z.string(),
+      address: z.string(),
+      city: z.string(),
+    }).optional(),
+    links: z.array(z.object({
+      label: z.string(),
+      url: z.string(),
+    })).optional(),
+    formAction: z.string().optional(),
   }),
 });
 

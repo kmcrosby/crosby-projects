@@ -1,58 +1,60 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getEntry } from 'astro:content';
+
+// Fetch about page content
+const aboutPage = await getEntry('pages', 'about');
+const { title, heroTitle, mission, focusAreas, directorSection, uniquePoints } = aboutPage?.data || {};
 ---
 
-<BaseLayout title="About - Low-Gravity Fluids Lab">
+<BaseLayout title={`${title || 'About'} - Low-Gravity Fluids Lab`}>
   <section class="page-hero">
     <div class="container">
-      <h1>About the Program</h1>
+      <h1>{heroTitle || title || 'About the Program'}</h1>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
       <div class="content-wrapper">
-        <h2>Mission</h2>
-        <p class="lead">
-          The Carthage College Space Sciences program is dedicated to solving critical technology 
-          problems for sustained human presence in space.
-        </p>
-        
-        <h3>Focus Areas</h3>
-        <div class="grid grid-2">
-          <div class="focus-area">
-            <h4>Propellant Transfer</h4>
-            <p>Developing technologies for safe and efficient propellant transfer in microgravity environments.</p>
-          </div>
-          <div class="focus-area">
-            <h4>Mass Gauging</h4>
-            <p>Creating innovative solutions for accurate mass measurement in space.</p>
-          </div>
-          <div class="focus-area">
-            <h4>Propellant Management</h4>
-            <p>Advancing systems for managing propellants in zero-gravity conditions.</p>
-          </div>
-          <div class="focus-area">
-            <h4>Microgravity Experiments</h4>
-            <p>Conducting cutting-edge research through parabolic flights and ground-based testing.</p>
-          </div>
-        </div>
+        {mission && (
+          <>
+            <h2>Mission</h2>
+            <p class="lead">{mission}</p>
+          </>
+        )}
 
-        <h3>Program Director</h3>
-        <p>
-          Dr. Kevin Crosby directs both the Carthage College Space Sciences program and the 
-          Wisconsin Space Grant Consortium, bringing extensive experience in fluid mechanics, 
-          space physics, and microgravity phenomena.
-        </p>
+        {focusAreas && focusAreas.length > 0 && (
+          <>
+            <h3>Focus Areas</h3>
+            <div class="grid grid-2">
+              {focusAreas.map((area) => (
+                <div class="focus-area">
+                  <h4>{area.title}</h4>
+                  <p>{area.description}</p>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
 
-        <h3>What Makes Us Unique</h3>
-        <ul>
-          <li>Undergraduates competing against graduate programs and aerospace companies</li>
-          <li>Multiple active NASA-funded programs</li>
-          <li>Direct partnerships with commercial space companies</li>
-          <li>Hands-on research experience from day one</li>
-          <li>Award-winning student achievements including NASA's TechLeap prize</li>
-        </ul>
+        {directorSection && (
+          <>
+            <h3>Program Director</h3>
+            <p>{directorSection}</p>
+          </>
+        )}
+
+        {uniquePoints && uniquePoints.length > 0 && (
+          <>
+            <h3>What Makes Us Unique</h3>
+            <ul>
+              {uniquePoints.map((point) => (
+                <li>{point}</li>
+              ))}
+            </ul>
+          </>
+        )}
       </div>
     </div>
   </section>

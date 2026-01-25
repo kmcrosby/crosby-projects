@@ -109,6 +109,21 @@ const settings = defineCollection({
   }),
 });
 
+const pages = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    heroTitle: z.string().optional(),
+    mission: z.string().optional(),
+    focusAreas: z.array(z.object({
+      title: z.string(),
+      description: z.string(),
+    })).optional(),
+    directorSection: z.string().optional(),
+    uniquePoints: z.array(z.string()).optional(),
+  }),
+});
+
 export const collections = {
   students,
   news,
@@ -118,4 +133,5 @@ export const collections = {
   media,
   partners,
   settings,
+  pages,
 };

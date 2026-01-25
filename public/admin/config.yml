@@ -27,6 +27,30 @@ collections:
           - { label: "Primary Dark", name: "primaryColorDark", widget: "color", required: false, default: "#7A232F", hint: "Darker variant for gradients" }
           - { label: "Accent Color", name: "accentColor", widget: "color", required: false, default: "#3AB0C8", hint: "Secondary accent color" }
 
+  # Pages
+  - name: "pages"
+    label: "Pages"
+    files:
+      - name: "about"
+        label: "About Page"
+        file: "src/content/pages/about.md"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string" }
+          - { label: "Hero Title", name: "heroTitle", widget: "string", required: false }
+          - { label: "Mission Statement", name: "mission", widget: "text", required: false }
+          - label: "Focus Areas"
+            name: "focusAreas"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+          - { label: "Program Director Section", name: "directorSection", widget: "text", required: false }
+          - label: "What Makes Us Unique"
+            name: "uniquePoints"
+            widget: "list"
+            required: false
+            field: { label: "Point", name: "point", widget: "string" }
 
   # Student Bios
   - name: "students"

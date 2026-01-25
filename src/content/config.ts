@@ -101,6 +101,11 @@ const settings = defineCollection({
     heroTitle: z.string().optional(),
     heroSubtitle: z.string().optional(),
     heroOverlayOpacity: z.number().min(0).max(100).optional().default(50),
+    heroButtons: z.array(z.object({
+      label: z.string(),
+      url: z.string(),
+      style: z.enum(['primary', 'secondary']).default('primary'),
+    })).optional(),
     // Color Theme
     primaryColor: z.string().optional().default('#D0202E'),
     primaryColorLight: z.string().optional().default('#EE2A37'),

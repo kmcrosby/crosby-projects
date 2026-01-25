@@ -21,6 +21,16 @@ collections:
           - { label: "Hero Title", name: "heroTitle", widget: "string", required: false, default: "Low-Gravity Fluids Lab" }
           - { label: "Hero Subtitle", name: "heroSubtitle", widget: "string", required: false, default: "Solving critical technology problems for sustained human presence in space" }
           - { label: "Overlay Darkness (%)", name: "heroOverlayOpacity", widget: "number", required: false, min: 0, max: 100, default: 50, hint: "0 = no overlay (bright), 100 = fully dark" }
+          # Hero Buttons
+          - label: "Hero Buttons"
+            name: "heroButtons"
+            widget: "list"
+            required: false
+            hint: "Add, edit, or remove buttons in the hero section. Leave empty for no buttons."
+            fields:
+              - { label: "Button Text", name: "label", widget: "string" }
+              - { label: "Link URL", name: "url", widget: "string", hint: "Use relative paths like /about or /join" }
+              - { label: "Style", name: "style", widget: "select", options: ["primary", "secondary"], default: "primary", hint: "Primary = solid white, Secondary = outlined" }
           # Color Theme
           - { label: "Primary Color", name: "primaryColor", widget: "color", required: false, default: "#D0202E", hint: "Main brand color (buttons, headers, accents)" }
           - { label: "Primary Light", name: "primaryColorLight", widget: "color", required: false, default: "#EE2A37", hint: "Lighter variant for hover states" }

@@ -17,6 +17,10 @@ const heroImage = settings.heroImage || '/images/hero-zerog-research.jpg';
 const heroTitle = settings.heroTitle || 'Low-Gravity Fluids Lab';
 const heroSubtitle = settings.heroSubtitle || 'Solving critical technology problems for sustained human presence in space';
 const heroOverlayOpacity = (settings.heroOverlayOpacity ?? 50) / 100;
+const heroButtons = settings.heroButtons || [
+  { label: 'Learn More', url: '/about', style: 'primary' },
+  { label: 'Join Our Program', url: '/join', style: 'secondary' },
+];
 
 // Color settings
 const primaryColor = settings.primaryColor || '#D0202E';
@@ -31,10 +35,18 @@ const accentColor = settings.accentColor || '#3AB0C8';
     <div class="container hero-content">
       <h1>{heroTitle}</h1>
       <p class="hero-subtitle">{heroSubtitle}</p>
-      <div class="hero-cta">
-        <a href="/crosby-projects/about" class="btn">Learn More</a>
-        <a href="/crosby-projects/join" class="btn btn-secondary">Join Our Program</a>
-      </div>
+      {heroButtons.length > 0 && (
+        <div class="hero-cta">
+          {heroButtons.map((button) => (
+            <a
+              href={`/crosby-projects${button.url}`}
+              class={`btn ${button.style === 'secondary' ? 'btn-secondary' : ''}`}
+            >
+              {button.label}
+            </a>
+          ))}
+        </div>
+      )}
     </div>
   </section>
 

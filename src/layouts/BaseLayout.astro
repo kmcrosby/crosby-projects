@@ -7,12 +7,17 @@ interface Props {
   description?: string;
 }
 
-const { title, description = 'Low-Gravity Fluids Lab at Carthage College' } = Astro.props;
+const { title, description: descriptionProp } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL || '/crosby-projects';
 
 // Fetch site settings for colors
 const siteSettings = await getEntry('settings', 'site');
 const settings = siteSettings?.data || {};
+
+// Site name and tagline (synced with hero)
+const siteName = settings.heroTitle || 'Low-Gravity Fluids Lab';
+const siteTagline = settings.heroSubtitle || 'Solving critical technology problems for sustained human presence in space';
+const description = descriptionProp || `${siteName} at Carthage College`;
 
 // Color settings with defaults
 const primaryColor = settings.primaryColor || '#D0202E';
@@ -59,7 +64,7 @@ const navigation = (settings.navigation || defaultNav).filter(item => item.enabl
         <nav class="main-nav">
           <div class="logo">
             <a href={`${baseUrl}/`}>
-              <h1 class="site-title">Low-Gravity Fluids Lab</h1>
+              <h1 class="site-title">{siteName}</h1>
             </a>
           </div>
           <ul class="nav-menu">
@@ -84,16 +89,15 @@ const navigation = (settings.navigation || defaultNav).filter(item => item.enabl
       <div class="container">
         <div class="footer-content">
           <div class="footer-section">
-            <h3>Low-Gravity Fluids Lab</h3>
-            <p>Solving critical technology problems for sustained human presence in space</p>
+            <h3>{siteName}</h3>
+            <p>{siteTagline}</p>
           </div>
           <div class="footer-section">
             <h4>Quick Links</h4>
             <ul>
-              <li><a href={`${baseUrl}/about`}>About the Program</a></li>
-              <li><a href={`${baseUrl}/students`}>Student Bios</a></li>
-              <li><a href={`${baseUrl}/research`}>Research</a></li>
-              <li><a href={`${baseUrl}/join`}>Join Us</a></li>
+              {navigation.filter(item => ['/about', '/students', '/research', '/join'].includes(item.url)).map((item) => (
+                <li><a href={`${baseUrl}${item.url}`}>{item.label}</a></li>
+              ))}
             </ul>
           </div>
           <div class="footer-section">
@@ -106,7 +110,7 @@ const navigation = (settings.navigation || defaultNav).filter(item => item.enabl
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} Low-Gravity Fluids Lab at Carthage College. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} {siteName} at Carthage College. All rights reserved.</p>
         </div>
       </div>
     </footer>

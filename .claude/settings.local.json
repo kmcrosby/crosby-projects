@@ -18,7 +18,8 @@
       "Bash(npx astro build)",
       "Bash(./node_modules/.bin/astro build:*)",
       "Bash(npm cache clean:*)",
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "Bash(gh run list:*)"
     ]
   }
 }

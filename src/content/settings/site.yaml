@@ -1,14 +1,8 @@
-# Site Settings - Editable via CMS
-# These settings control the appearance of the website
-
-# Hero Section
-heroImage: "/images/hero-zerog-research.jpg"
-heroTitle: "Low-Gravity Fluids Lab"
-heroSubtitle: "Solving critical technology problems for sustained human presence in space"
+heroImage: /images/hero-zerog-research.jpg
+heroTitle: Low-Gravity Fluids Lab
+heroSubtitle: Solving critical technology problems for sustained human presence in space
 heroOverlayOpacity: 50
-
-# Color Theme
-primaryColor: "#D0202E"
-primaryColorLight: "#EE2A37"
-primaryColorDark: "#7A232F"
-accentColor: "#3AB0C8"
+primaryColor: '#b3232f'
+primaryColorLight: '#EE2A37'
+primaryColorDark: '#7A232F'
+accentColor: '#3AB0C8'

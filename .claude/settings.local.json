@@ -12,7 +12,13 @@
       "Bash(kill:*)",
       "Bash(ls:*)",
       "Bash(python:*)",
-      "Bash(xargs kill:*)"
+      "Bash(xargs kill:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm install)",
+      "Bash(npx astro build)",
+      "Bash(./node_modules/.bin/astro build:*)",
+      "Bash(npm cache clean:*)",
+      "Bash(npm run dev:*)"
     ]
   }
 }

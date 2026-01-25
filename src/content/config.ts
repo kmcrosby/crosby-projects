@@ -93,6 +93,22 @@ const partners = defineCollection({
   }),
 });
 
+const settings = defineCollection({
+  type: 'data',
+  schema: z.object({
+    // Hero Section
+    heroImage: z.string().optional(),
+    heroTitle: z.string().optional(),
+    heroSubtitle: z.string().optional(),
+    heroOverlayOpacity: z.number().min(0).max(100).optional().default(50),
+    // Color Theme
+    primaryColor: z.string().optional().default('#D0202E'),
+    primaryColorLight: z.string().optional().default('#EE2A37'),
+    primaryColorDark: z.string().optional().default('#7A232F'),
+    accentColor: z.string().optional().default('#3AB0C8'),
+  }),
+});
+
 export const collections = {
   students,
   news,
@@ -101,4 +117,5 @@ export const collections = {
   resources,
   media,
   partners,
+  settings,
 };

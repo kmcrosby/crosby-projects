@@ -1,20 +1,36 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
+
+// Fetch site settings
+const siteSettings = await getEntry('settings', 'site');
+const settings = siteSettings?.data || {};
 
 // Fetch featured projects
 const allProjects = await getCollection('projects');
 const featuredProjects = allProjects
   .filter(project => project.data.featured)
   .slice(0, 6); // Limit to 6 for 2 rows max
+
+// Hero settings with defaults
+const heroImage = settings.heroImage || '/images/hero-zerog-research.jpg';
+const heroTitle = settings.heroTitle || 'Low-Gravity Fluids Lab';
+const heroSubtitle = settings.heroSubtitle || 'Solving critical technology problems for sustained human presence in space';
+const heroOverlayOpacity = (settings.heroOverlayOpacity ?? 50) / 100;
+
+// Color settings
+const primaryColor = settings.primaryColor || '#D0202E';
+const primaryColorLight = settings.primaryColorLight || '#EE2A37';
+const primaryColorDark = settings.primaryColorDark || '#7A232F';
+const accentColor = settings.accentColor || '#3AB0C8';
 ---
 
-<BaseLayout title="Low-Gravity Fluids Lab">
+<BaseLayout title={heroTitle}>
   <section class="hero">
     <div class="hero-overlay"></div>
     <div class="container hero-content">
-      <h1>Low-Gravity Fluids Lab</h1>
-      <p class="hero-subtitle">Solving critical technology problems for sustained human presence in space</p>
+      <h1>{heroTitle}</h1>
+      <p class="hero-subtitle">{heroSubtitle}</p>
       <div class="hero-cta">
         <a href="/crosby-projects/about" class="btn">Learn More</a>
         <a href="/crosby-projects/join" class="btn btn-secondary">Join Our Program</a>
@@ -114,10 +130,17 @@ const featuredProjects = allProjects
     </div>
   </section>
 
-  <style>
+  <style define:vars={{
+    heroImage: `url('/crosby-projects${heroImage}')`,
+    heroOverlayOpacity,
+    primaryColor,
+    primaryColorLight,
+    primaryColorDark,
+    accentColor
+  }}>
     .hero {
       position: relative;
-      background-image: url('/crosby-projects/images/hero-zerog-research.jpg');
+      background-image: var(--heroImage);
       background-size: cover;
       background-position: center;
       color: var(--carthage-white);
@@ -132,7 +155,7 @@ const featuredProjects = allProjects
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, var(--heroOverlayOpacity));
       pointer-events: none;
     }
 
@@ -164,7 +187,7 @@ const featuredProjects = allProjects
 
     .hero-cta .btn {
       background-color: var(--carthage-white);
-      color: var(--carthage-red);
+      color: var(--primaryColor);
     }
 
     .hero-cta .btn:hover {
@@ -179,7 +202,7 @@ const featuredProjects = allProjects
 
     .hero-cta .btn-secondary:hover {
       background-color: var(--carthage-white);
-      color: var(--carthage-red);
+      color: var(--primaryColor);
     }
 
     .intro {
@@ -255,7 +278,7 @@ const featuredProjects = allProjects
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, var(--carthage-red) 0%, var(--carthage-red-dark) 100%);
+      background: linear-gradient(135deg, var(--primaryColor) 0%, var(--primaryColorDark) 100%);
     }
 
     .project-image.placeholder span {

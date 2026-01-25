@@ -17,15 +17,15 @@ collections:
         file: "src/content/settings/site.yaml"
         fields:
           # Hero Section
-          - { label: "Hero Image", name: "heroImage", widget: "image", hint: "Background image for the homepage hero section" }
-          - { label: "Hero Title", name: "heroTitle", widget: "string", default: "Low-Gravity Fluids Lab" }
-          - { label: "Hero Subtitle", name: "heroSubtitle", widget: "string", default: "Solving critical technology problems for sustained human presence in space" }
-          - { label: "Overlay Darkness (%)", name: "heroOverlayOpacity", widget: "number", min: 0, max: 100, default: 50, hint: "0 = no overlay (bright), 100 = fully dark" }
+          - { label: "Hero Image", name: "heroImage", widget: "image", required: false, hint: "Background image for the homepage hero section" }
+          - { label: "Hero Title", name: "heroTitle", widget: "string", required: false, default: "Low-Gravity Fluids Lab" }
+          - { label: "Hero Subtitle", name: "heroSubtitle", widget: "string", required: false, default: "Solving critical technology problems for sustained human presence in space" }
+          - { label: "Overlay Darkness (%)", name: "heroOverlayOpacity", widget: "number", required: false, min: 0, max: 100, default: 50, hint: "0 = no overlay (bright), 100 = fully dark" }
           # Color Theme
-          - { label: "Primary Color", name: "primaryColor", widget: "color", default: "#D0202E", hint: "Main brand color (buttons, headers, accents)" }
-          - { label: "Primary Light", name: "primaryColorLight", widget: "color", default: "#EE2A37", hint: "Lighter variant for hover states" }
-          - { label: "Primary Dark", name: "primaryColorDark", widget: "color", default: "#7A232F", hint: "Darker variant for gradients" }
-          - { label: "Accent Color", name: "accentColor", widget: "color", default: "#3AB0C8", hint: "Secondary accent color" }
+          - { label: "Primary Color", name: "primaryColor", widget: "color", required: false, default: "#D0202E", hint: "Main brand color (buttons, headers, accents)" }
+          - { label: "Primary Light", name: "primaryColorLight", widget: "color", required: false, default: "#EE2A37", hint: "Lighter variant for hover states" }
+          - { label: "Primary Dark", name: "primaryColorDark", widget: "color", required: false, default: "#7A232F", hint: "Darker variant for gradients" }
+          - { label: "Accent Color", name: "accentColor", widget: "color", required: false, default: "#3AB0C8", hint: "Secondary accent color" }
 
 
   # Student Bios

@@ -30,7 +30,7 @@ navigation:
     enabled: true
   - label: Join
     url: /join
-    enabled: true
+    enabled: false
   - label: Contact
     url: /contact
     enabled: true

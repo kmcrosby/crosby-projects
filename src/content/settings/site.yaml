@@ -2,13 +2,7 @@ heroImage: /images/hero-zerog-research.jpg
 heroTitle: Space Sciences Lab
 heroSubtitle: Solving critical technology problems for sustained human presence in space
 heroOverlayOpacity: 50
-heroButtons:
-  - label: "Learn More"
-    url: "/about"
-    style: "primary"
-  - label: "Join Our Program"
-    url: "/join"
-    style: "secondary"
+heroButtons: []
 primaryColor: '#b3232f'
 primaryColorLight: '#EE2A37'
 primaryColorDark: '#7A232F'

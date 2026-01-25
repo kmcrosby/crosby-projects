@@ -102,8 +102,8 @@ const settings = defineCollection({
     heroSubtitle: z.string().optional(),
     heroOverlayOpacity: z.number().min(0).max(100).optional().default(50),
     heroButtons: z.array(z.object({
-      label: z.string(),
-      url: z.string(),
+      label: z.string().optional(),
+      url: z.string().optional(),
       style: z.enum(['primary', 'secondary']).default('primary'),
     })).optional(),
     // Color Theme
@@ -117,6 +117,22 @@ const settings = defineCollection({
       url: z.string(),
       enabled: z.boolean().default(true),
     })).optional(),
+    // Homepage Sections
+    introTitle: z.string().optional(),
+    introText: z.string().optional(),
+    featuredTitle: z.string().optional(),
+    highlightsTitle: z.string().optional(),
+    highlights: z.array(z.object({
+      title: z.string(),
+      text: z.string(),
+      buttonText: z.string(),
+      buttonUrl: z.string(),
+    })).optional(),
+    newsTitle: z.string().optional(),
+    ctaTitle: z.string().optional(),
+    ctaText: z.string().optional(),
+    ctaButtonText: z.string().optional(),
+    ctaButtonUrl: z.string().optional(),
   }),
 });
 

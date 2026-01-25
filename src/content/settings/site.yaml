@@ -41,3 +41,31 @@ navigation:
   - label: Contact
     url: /contact
     enabled: true
+
+# Homepage Sections
+introTitle: "Pioneering Space Technology"
+introText: "The Carthage College Space Sciences program focuses on solving critical challenges for human space exploration, including propellant transfer, mass gauging, and propellant management in microgravity environments."
+
+featuredTitle: "Featured Technology"
+
+highlightsTitle: "Program Highlights"
+highlights:
+  - title: "Undergraduate Research"
+    text: "Our students compete against graduate programs and aerospace companies, winning recognition including NASA's TechLeap prize."
+    buttonText: "Meet Our Students"
+    buttonUrl: "/students"
+  - title: "NASA Partnerships"
+    text: "Active NASA-funded programs and collaborations with industry leaders like Blue Origin."
+    buttonText: "Our Partners"
+    buttonUrl: "/partners"
+  - title: "Real-World Impact"
+    text: "Publishing research, conducting microgravity experiments, and advancing space technology."
+    buttonText: "View Research"
+    buttonUrl: "/research"
+
+newsTitle: "Latest News"
+
+ctaTitle: "Ready to Launch Your Future?"
+ctaText: "Join our team of student researchers working on cutting-edge space technology"
+ctaButtonText: "Apply Now"
+ctaButtonUrl: "/join"

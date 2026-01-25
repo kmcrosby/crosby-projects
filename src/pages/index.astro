@@ -27,6 +27,23 @@ const primaryColor = settings.primaryColor || '#D0202E';
 const primaryColorLight = settings.primaryColorLight || '#EE2A37';
 const primaryColorDark = settings.primaryColorDark || '#7A232F';
 const accentColor = settings.accentColor || '#3AB0C8';
+
+// Homepage section settings
+const introTitle = settings.introTitle || 'Pioneering Space Technology';
+const introText = settings.introText || 'The Carthage College Space Sciences program focuses on solving critical challenges for human space exploration, including propellant transfer, mass gauging, and propellant management in microgravity environments.';
+const featuredTitle = settings.featuredTitle || 'Featured Technology';
+const highlightsTitle = settings.highlightsTitle || 'Program Highlights';
+const defaultHighlights = [
+  { title: 'Undergraduate Research', text: 'Our students compete against graduate programs and aerospace companies, winning recognition including NASA\'s TechLeap prize.', buttonText: 'Meet Our Students', buttonUrl: '/students' },
+  { title: 'NASA Partnerships', text: 'Active NASA-funded programs and collaborations with industry leaders like Blue Origin.', buttonText: 'Our Partners', buttonUrl: '/partners' },
+  { title: 'Real-World Impact', text: 'Publishing research, conducting microgravity experiments, and advancing space technology.', buttonText: 'View Research', buttonUrl: '/research' },
+];
+const highlights = settings.highlights || defaultHighlights;
+const newsTitle = settings.newsTitle || 'Latest News';
+const ctaTitle = settings.ctaTitle || 'Ready to Launch Your Future?';
+const ctaText = settings.ctaText || 'Join our team of student researchers working on cutting-edge space technology';
+const ctaButtonText = settings.ctaButtonText || 'Apply Now';
+const ctaButtonUrl = settings.ctaButtonUrl || '/join';
 ---
 
 <BaseLayout title={heroTitle}>
@@ -53,12 +70,8 @@ const accentColor = settings.accentColor || '#3AB0C8';
   <section class="section">
     <div class="container">
       <div class="intro text-center">
-        <h2>Pioneering Space Technology</h2>
-        <p class="lead">
-          The Carthage College Space Sciences program focuses on solving critical challenges 
-          for human space exploration, including propellant transfer, mass gauging, and 
-          propellant management in microgravity environments.
-        </p>
+        <h2>{introTitle}</h2>
+        <p class="lead">{introText}</p>
       </div>
     </div>
   </section>
@@ -67,7 +80,7 @@ const accentColor = settings.accentColor || '#3AB0C8';
   {featuredProjects.length > 0 && (
     <section class="section featured-projects">
       <div class="container">
-        <h2 class="text-center">Featured Technology</h2>
+        <h2 class="text-center">{featuredTitle}</h2>
         <div class="projects-grid">
           {featuredProjects.map((project) => (
             <a href={`/crosby-projects/projects/${project.slug}/`} class="project-card">
@@ -98,30 +111,22 @@ const accentColor = settings.accentColor || '#3AB0C8';
 
   <section class="section bg-gray-light">
     <div class="container">
-      <h2 class="text-center">Program Highlights</h2>
+      <h2 class="text-center">{highlightsTitle}</h2>
       <div class="grid grid-3">
-        <div class="card">
-          <h3>Undergraduate Research</h3>
-          <p>Our students compete against graduate programs and aerospace companies, winning recognition including NASA's TechLeap prize.</p>
-          <a href="/crosby-projects/students" class="btn">Meet Our Students</a>
-        </div>
-        <div class="card">
-          <h3>NASA Partnerships</h3>
-          <p>Active NASA-funded programs and collaborations with industry leaders like Blue Origin.</p>
-          <a href="/crosby-projects/partners" class="btn">Our Partners</a>
-        </div>
-        <div class="card">
-          <h3>Real-World Impact</h3>
-          <p>Publishing research, conducting microgravity experiments, and advancing space technology.</p>
-          <a href="/crosby-projects/research" class="btn">View Research</a>
-        </div>
+        {highlights.map((highlight) => (
+          <div class="card">
+            <h3>{highlight.title}</h3>
+            <p>{highlight.text}</p>
+            <a href={`/crosby-projects${highlight.buttonUrl}`} class="btn">{highlight.buttonText}</a>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <h2 class="text-center">Latest News</h2>
+      <h2 class="text-center">{newsTitle}</h2>
       <div class="news-grid">
         <div class="news-item">
           <h3>Program Updates</h3>
@@ -134,11 +139,9 @@ const accentColor = settings.accentColor || '#3AB0C8';
 
   <section class="section bg-red">
     <div class="container text-center">
-      <h2 style="color: white;">Ready to Launch Your Future?</h2>
-      <p style="color: white; font-size: 1.2rem; margin-bottom: 2rem;">
-        Join our team of student researchers working on cutting-edge space technology
-      </p>
-      <a href="/crosby-projects/join" class="btn" style="background-color: white; color: var(--carthage-red);">Apply Now</a>
+      <h2 style="color: white;">{ctaTitle}</h2>
+      <p style="color: white; font-size: 1.2rem; margin-bottom: 2rem;">{ctaText}</p>
+      <a href={`/crosby-projects${ctaButtonUrl}`} class="btn" style="background-color: white; color: var(--carthage-red);">{ctaButtonText}</a>
     </div>
   </section>
 

@@ -46,6 +46,26 @@ collections:
               - { label: "Label", name: "label", widget: "string" }
               - { label: "URL", name: "url", widget: "string", hint: "Use relative paths like /about or /contact" }
               - { label: "Enabled", name: "enabled", widget: "boolean", default: true }
+          # Homepage Sections
+          - { label: "Intro Section Title", name: "introTitle", widget: "string", required: false, default: "Pioneering Space Technology" }
+          - { label: "Intro Section Text", name: "introText", widget: "text", required: false, default: "The Carthage College Space Sciences program focuses on solving critical challenges for human space exploration, including propellant transfer, mass gauging, and propellant management in microgravity environments." }
+          - { label: "Featured Projects Title", name: "featuredTitle", widget: "string", required: false, default: "Featured Technology" }
+          - { label: "Highlights Section Title", name: "highlightsTitle", widget: "string", required: false, default: "Program Highlights" }
+          - label: "Highlight Cards"
+            name: "highlights"
+            widget: "list"
+            required: false
+            hint: "The 3 highlight cards on the homepage"
+            fields:
+              - { label: "Card Title", name: "title", widget: "string" }
+              - { label: "Card Text", name: "text", widget: "text" }
+              - { label: "Button Text", name: "buttonText", widget: "string" }
+              - { label: "Button URL", name: "buttonUrl", widget: "string" }
+          - { label: "News Section Title", name: "newsTitle", widget: "string", required: false, default: "Latest News" }
+          - { label: "CTA Section Title", name: "ctaTitle", widget: "string", required: false, default: "Ready to Launch Your Future?" }
+          - { label: "CTA Section Text", name: "ctaText", widget: "text", required: false, default: "Join our team of student researchers working on cutting-edge space technology" }
+          - { label: "CTA Button Text", name: "ctaButtonText", widget: "string", required: false, default: "Apply Now" }
+          - { label: "CTA Button URL", name: "ctaButtonUrl", widget: "string", required: false, default: "/join" }
 
   # Pages
   - name: "pages"

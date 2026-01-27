@@ -40,7 +40,9 @@ const accentColor = settings.accentColor || '#3AB0C8';
 // Homepage section settings
 const introTitle = settings.introTitle || 'Pioneering Space Technology';
 const introText = settings.introText || 'The Carthage College Space Sciences program focuses on solving critical challenges for human space exploration, including propellant transfer, mass gauging, and propellant management in microgravity environments.';
+const showFeaturedProjects = settings.showFeaturedProjects ?? true;
 const featuredTitle = settings.featuredTitle || 'Featured Technology';
+const showHighlights = settings.showHighlights ?? true;
 const highlightsTitle = settings.highlightsTitle || 'Program Highlights';
 const defaultHighlights = [
   { title: 'Undergraduate Research', text: 'Our students compete against graduate programs and aerospace companies, winning recognition including NASA\'s TechLeap prize.', buttonText: 'Meet Our Students', buttonUrl: '/students' },
@@ -48,6 +50,7 @@ const defaultHighlights = [
   { title: 'Real-World Impact', text: 'Publishing research, conducting microgravity experiments, and advancing space technology.', buttonText: 'View Research', buttonUrl: '/research' },
 ];
 const highlights = settings.highlights || defaultHighlights;
+const showNews = settings.showNews ?? true;
 const newsTitle = settings.newsTitle || 'Latest News';
 const ctaTitle = settings.ctaTitle || 'Ready to Launch Your Future?';
 const ctaText = settings.ctaText || 'Join our team of student researchers working on cutting-edge space technology';
@@ -113,7 +116,7 @@ const ctaButtonUrl = settings.ctaButtonUrl || '/join';
   </section>
 
   <!-- Featured Projects Grid -->
-  {featuredProjects.length > 0 && (
+  {showFeaturedProjects && featuredProjects.length > 0 && (
     <section class="section featured-projects">
       <div class="container">
         <h2 class="text-center">{featuredTitle}</h2>
@@ -145,33 +148,37 @@ const ctaButtonUrl = settings.ctaButtonUrl || '/join';
     </section>
   )}
 
-  <section class="section bg-gray-light">
-    <div class="container">
-      <h2 class="text-center">{highlightsTitle}</h2>
-      <div class="grid grid-3">
-        {highlights.map((highlight) => (
-          <div class="card">
-            <h3>{highlight.title}</h3>
-            <p>{highlight.text}</p>
-            <a href={`/crosby-projects${highlight.buttonUrl}`} class="btn">{highlight.buttonText}</a>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <h2 class="text-center">{newsTitle}</h2>
-      <div class="news-grid">
-        <div class="news-item">
-          <h3>Program Updates</h3>
-          <p>Stay tuned for the latest news and achievements from our space sciences program.</p>
-          <a href="/crosby-projects/media">View All News →</a>
+  {showHighlights && (
+    <section class="section bg-gray-light">
+      <div class="container">
+        <h2 class="text-center">{highlightsTitle}</h2>
+        <div class="grid grid-3">
+          {highlights.map((highlight) => (
+            <div class="card">
+              <h3>{highlight.title}</h3>
+              <p>{highlight.text}</p>
+              <a href={`/crosby-projects${highlight.buttonUrl}`} class="btn">{highlight.buttonText}</a>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
+
+  {showNews && (
+    <section class="section">
+      <div class="container">
+        <h2 class="text-center">{newsTitle}</h2>
+        <div class="news-grid">
+          <div class="news-item">
+            <h3>Program Updates</h3>
+            <p>Stay tuned for the latest news and achievements from our space sciences program.</p>
+            <a href="/crosby-projects/media">View All News →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
 
   <section class="section bg-red">
     <div class="container text-center">

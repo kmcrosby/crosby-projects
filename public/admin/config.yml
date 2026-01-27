@@ -49,7 +49,9 @@ collections:
           # Homepage Sections
           - { label: "Latest Projects Section Title", name: "introTitle", widget: "string", required: false, default: "Pioneering Space Technology", hint: "Title shown above the latest project cards" }
           - { label: "Latest Projects Fallback Text", name: "introText", widget: "text", required: false, default: "The Carthage College Space Sciences program focuses on solving critical challenges for human space exploration, including propellant transfer, mass gauging, and propellant management in microgravity environments.", hint: "Shown only if there are no projects to display" }
+          - { label: "Show Featured Projects Section", name: "showFeaturedProjects", widget: "boolean", default: true, hint: "Toggle visibility of the Featured Projects section" }
           - { label: "Featured Projects Title", name: "featuredTitle", widget: "string", required: false, default: "Featured Technology" }
+          - { label: "Show Highlights Section", name: "showHighlights", widget: "boolean", default: true, hint: "Toggle visibility of the Program Highlights section" }
           - { label: "Highlights Section Title", name: "highlightsTitle", widget: "string", required: false, default: "Program Highlights" }
           - label: "Highlight Cards"
             name: "highlights"
@@ -61,6 +63,7 @@ collections:
               - { label: "Card Text", name: "text", widget: "text" }
               - { label: "Button Text", name: "buttonText", widget: "string" }
               - { label: "Button URL", name: "buttonUrl", widget: "string" }
+          - { label: "Show News Section", name: "showNews", widget: "boolean", default: true, hint: "Toggle visibility of the Latest News section" }
           - { label: "News Section Title", name: "newsTitle", widget: "string", required: false, default: "Latest News" }
           - { label: "CTA Section Title", name: "ctaTitle", widget: "string", required: false, default: "Ready to Launch Your Future?" }
           - { label: "CTA Section Text", name: "ctaText", widget: "text", required: false, default: "Join our team of student researchers working on cutting-edge space technology" }

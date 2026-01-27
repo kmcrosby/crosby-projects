@@ -37,7 +37,7 @@ navigation:
     enabled: true
 introTitle: Latest
 introText: TechLeap work continues on acoustic bubble trapping for in-space refueling application.
-showFeaturedProjects: true
+showFeaturedProjects: false
 featuredTitle: Featured Projects
 showHighlights: true
 highlightsTitle: Program Highlights
@@ -54,7 +54,7 @@ highlights:
     text: Publishing research, conducting microgravity experiments, and advancing space technology.
     buttonText: View Research
     buttonUrl: /research
-showNews: true
+showNews: false
 newsTitle: Latest News
 ctaTitle: Ready to Launch Your Future?
 ctaText: Join our team of student researchers working on cutting-edge space technology

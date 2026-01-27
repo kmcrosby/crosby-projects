@@ -47,8 +47,8 @@ collections:
               - { label: "URL", name: "url", widget: "string", hint: "Use relative paths like /about or /contact" }
               - { label: "Enabled", name: "enabled", widget: "boolean", default: true }
           # Homepage Sections
-          - { label: "Intro Section Title", name: "introTitle", widget: "string", required: false, default: "Pioneering Space Technology" }
-          - { label: "Intro Section Text", name: "introText", widget: "text", required: false, default: "The Carthage College Space Sciences program focuses on solving critical challenges for human space exploration, including propellant transfer, mass gauging, and propellant management in microgravity environments." }
+          - { label: "Latest Projects Section Title", name: "introTitle", widget: "string", required: false, default: "Pioneering Space Technology", hint: "Title shown above the latest project cards" }
+          - { label: "Latest Projects Fallback Text", name: "introText", widget: "text", required: false, default: "The Carthage College Space Sciences program focuses on solving critical challenges for human space exploration, including propellant transfer, mass gauging, and propellant management in microgravity environments.", hint: "Shown only if there are no projects to display" }
           - { label: "Featured Projects Title", name: "featuredTitle", widget: "string", required: false, default: "Featured Technology" }
           - { label: "Highlights Section Title", name: "highlightsTitle", widget: "string", required: false, default: "Program Highlights" }
           - label: "Highlight Cards"

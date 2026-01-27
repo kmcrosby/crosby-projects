@@ -12,6 +12,15 @@ const featuredProjects = allProjects
   .filter(project => project.data.featured)
   .slice(0, 6); // Limit to 6 for 2 rows max
 
+// Fetch latest projects for the intro section (sorted by startDate, newest first)
+const latestProjects = [...allProjects]
+  .sort((a, b) => {
+    const dateA = a.data.startDate ? new Date(a.data.startDate) : new Date(0);
+    const dateB = b.data.startDate ? new Date(b.data.startDate) : new Date(0);
+    return dateB.getTime() - dateA.getTime();
+  })
+  .slice(0, 3); // Limit to 3 for the intro section
+
 // Hero settings with defaults
 const heroImage = settings.heroImage || '/images/hero-zerog-research.jpg';
 const heroTitle = settings.heroTitle || 'Low-Gravity Fluids Lab';
@@ -67,12 +76,39 @@ const ctaButtonUrl = settings.ctaButtonUrl || '/join';
     </div>
   </section>
 
-  <section class="section">
+  <section class="section latest-section">
     <div class="container">
-      <div class="intro text-center">
-        <h2>{introTitle}</h2>
-        <p class="lead">{introText}</p>
-      </div>
+      <h2 class="text-center">{introTitle}</h2>
+      {latestProjects.length > 0 ? (
+        <div class="latest-grid">
+          {latestProjects.map((project) => (
+            <a href={`/crosby-projects/projects/${project.slug}/`} class="latest-card">
+              <div class="latest-card-image">
+                {project.data.image ? (
+                  <img
+                    src={project.data.image.startsWith('/') ? `/crosby-projects${project.data.image}` : project.data.image}
+                    alt={project.data.title}
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="latest-card-placeholder">
+                    <span>🔬</span>
+                  </div>
+                )}
+              </div>
+              <div class="latest-card-content">
+                <h3>{project.data.title}</h3>
+                <p>{project.data.description}</p>
+                <span class="read-more">Read More →</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <div class="intro text-center">
+          <p class="lead">{introText}</p>
+        </div>
+      )}
     </div>
   </section>
 
@@ -229,6 +265,114 @@ const ctaButtonUrl = settings.ctaButtonUrl || '/join';
       font-size: 1.2rem;
       line-height: 1.8;
       color: var(--carthage-gray);
+    }
+
+    /* Latest Projects Section */
+    .latest-section {
+      background-color: var(--carthage-gray-light);
+    }
+
+    .latest-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-lg);
+    }
+
+    @media (max-width: 900px) {
+      .latest-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .latest-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .latest-card {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      background: var(--carthage-white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .latest-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .latest-card-image {
+      width: 100%;
+      height: 160px;
+      overflow: hidden;
+      background: var(--carthage-gray-light);
+    }
+
+    .latest-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .latest-card:hover .latest-card-image img {
+      transform: scale(1.05);
+    }
+
+    .latest-card-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--primaryColor) 0%, var(--primaryColorDark) 100%);
+    }
+
+    .latest-card-placeholder span {
+      font-size: 3rem;
+    }
+
+    .latest-card-content {
+      padding: var(--spacing-md);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .latest-card-content h3 {
+      margin: 0 0 var(--spacing-sm) 0;
+      font-size: 1.1rem;
+      color: var(--carthage-black);
+    }
+
+    .latest-card-content p {
+      margin: 0 0 var(--spacing-sm) 0;
+      color: var(--carthage-gray);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      flex: 1;
+    }
+
+    .read-more {
+      color: var(--primaryColor);
+      font-weight: 600;
+      font-size: 0.875rem;
+      font-family: var(--font-sans);
+    }
+
+    .latest-card:hover .read-more {
+      text-decoration: underline;
     }
 
     /* Featured Projects Styles */

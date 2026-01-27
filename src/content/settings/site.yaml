@@ -35,8 +35,8 @@ navigation:
   - label: Contact
     url: /contact
     enabled: true
-introTitle: Pioneering Space Technology
-introText: The Carthage College Space Sciences program focuses on solving critical challenges for human space exploration, including propellant transfer, mass gauging, and propellant management in microgravity environments.
+introTitle: Latest
+introText: TechLeap work continues on acoustic bubble trapping for in-space refueling application.
 featuredTitle: Featured Projects
 highlightsTitle: Program Highlights
 highlights:

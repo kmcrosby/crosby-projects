@@ -39,7 +39,7 @@ introTitle: Latest
 introText: TechLeap work continues on acoustic bubble trapping for in-space refueling application.
 showFeaturedProjects: false
 featuredTitle: Featured Projects
-showHighlights: true
+showHighlights: false
 highlightsTitle: Program Highlights
 highlights:
   - title: Undergraduate Research

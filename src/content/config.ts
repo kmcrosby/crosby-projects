@@ -35,8 +35,8 @@ const projects = defineCollection({
     image: z.string().optional(),
     description: z.string(),
     status: z.enum(['Active', 'Completed', 'Upcoming']),
-    startDate: z.coerce.date().optional(),
-    endDate: z.coerce.date().optional(),
+    startDate: z.preprocess((val) => (val === '' ? undefined : val), z.coerce.date().optional()),
+    endDate: z.preprocess((val) => (val === '' ? undefined : val), z.coerce.date().optional()),
   }),
 });
 

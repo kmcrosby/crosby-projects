@@ -120,7 +120,9 @@ const settings = defineCollection({
     // Homepage Sections
     introTitle: z.string().optional(),
     introText: z.string().optional(),
+    showFeaturedProjects: z.boolean().optional().default(true),
     featuredTitle: z.string().optional(),
+    showHighlights: z.boolean().optional().default(true),
     highlightsTitle: z.string().optional(),
     highlights: z.array(z.object({
       title: z.string(),
@@ -128,6 +130,7 @@ const settings = defineCollection({
       buttonText: z.string(),
       buttonUrl: z.string(),
     })).optional(),
+    showNews: z.boolean().optional().default(true),
     newsTitle: z.string().optional(),
     ctaTitle: z.string().optional(),
     ctaText: z.string().optional(),
